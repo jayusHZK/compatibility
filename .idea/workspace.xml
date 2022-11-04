@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f35621b4-6380-40f5-b658-aa3491692c75" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Maven\repository" />
+        <option name="mavenHome" value="D:\Maven\apache-maven-3.8.1-bin\apache-maven-3.8.1" />
+        <option name="userSettingsFile" value="D:\Maven\apache-maven-3.8.1-bin\apache-maven-3.8.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="29ae0sNlXRWcLd2FG05If5fhvby" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../xxx/腾讯sdk包/sdk (1)/tencentcloud-sdk-java-3.1.572.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.5155875" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\new work space\compatibility\compatibility\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.jayus" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jayus.controller.vo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.DataTest">
+    <configuration name="DataTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jayus.test.DataTest" />
+      <module name="compatibility" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jayus.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GdMapUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jayus.test.GdMapUtils" />
+      <module name="compatibility" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jayus.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jayus.netty.nettyHttp.HttpApplication" />
+      <module name="compatibility" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jayus.netty.nettyHttp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StreamMapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jayus.test.StreamMapTest" />
+      <module name="compatibility" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jayus.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.jayus.gson" />
+      <module name="compatibility" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.jayus.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BootNocascompatibilityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="compatibility" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.jayus.BootNocascompatibilityApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.gson" />
+      <item itemvalue="Application.HttpApplication" />
+      <item itemvalue="Application.StreamMapTest" />
+      <item itemvalue="Spring Boot.BootNocascompatibilityApplication" />
+      <item itemvalue="Application.GdMapUtils" />
+      <item itemvalue="Application.DataTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DataTest" />
+        <item itemvalue="Application.GdMapUtils" />
+        <item itemvalue="Application.StreamMapTest" />
+        <item itemvalue="Application.HttpApplication" />
+        <item itemvalue="Application.gson" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f35621b4-6380-40f5-b658-aa3491692c75" name="Default Changelist" comment="" />
+      <created>1653355404275</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653355404275</updated>
+      <workItem from="1653355405462" duration="835000" />
+      <workItem from="1653356942944" duration="17827000" />
+      <workItem from="1653464383710" duration="1240000" />
+      <workItem from="1655779985228" duration="9128000" />
+      <workItem from="1656397674345" duration="2362000" />
+      <workItem from="1656665230488" duration="4963000" />
+      <workItem from="1656985320548" duration="24191000" />
+      <workItem from="1657157560712" duration="18000" />
+      <workItem from="1657157607733" duration="46670000" />
+      <workItem from="1657531917772" duration="12617000" />
+      <workItem from="1657786092221" duration="3236000" />
+      <workItem from="1657866405323" duration="1111000" />
+      <workItem from="1657867878781" duration="2697000" />
+      <workItem from="1658130103531" duration="1013000" />
+      <workItem from="1658195361616" duration="8013000" />
+      <workItem from="1658297812335" duration="9374000" />
+      <workItem from="1658371364059" duration="4197000" />
+      <workItem from="1658476852728" duration="9295000" />
+      <workItem from="1658744616834" duration="593000" />
+      <workItem from="1658826645025" duration="37070000" />
+      <workItem from="1659088361283" duration="593000" />
+      <workItem from="1659171965792" duration="1656000" />
+      <workItem from="1659177168229" duration="615000" />
+      <workItem from="1659344556188" duration="5752000" />
+      <workItem from="1659496938720" duration="2147000" />
+      <workItem from="1659508086682" duration="638000" />
+      <workItem from="1659518883526" duration="4021000" />
+      <workItem from="1659606512380" duration="13676000" />
+      <workItem from="1659924704637" duration="7565000" />
+      <workItem from="1659946587804" duration="8614000" />
+      <workItem from="1660014980079" duration="104757000" />
+      <workItem from="1660872772727" duration="20175000" />
+      <workItem from="1661398472250" duration="716000" />
+      <workItem from="1662004011561" duration="605000" />
+      <workItem from="1662017528752" duration="2281000" />
+      <workItem from="1664271375071" duration="222000" />
+      <workItem from="1664435927902" duration="1223000" />
+      <workItem from="1665373016047" duration="987000" />
+      <workItem from="1666763183752" duration="15210000" />
+      <workItem from="1666856513967" duration="623000" />
+      <workItem from="1666951675640" duration="2385000" />
+      <workItem from="1667201066281" duration="1208000" />
+      <workItem from="1667215693168" duration="13000" />
+      <workItem from="1667216346688" duration="9818000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/compatibility/src/main/java/com/jayus/netty/jdkio/reactor/MultipleReactor.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml  # 指定yaml文件的格式
+        group: dev
+        namespace: dev
+      # ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+      # nocas-config-client-dev.yaml
+
