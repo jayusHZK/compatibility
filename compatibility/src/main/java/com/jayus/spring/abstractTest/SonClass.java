@@ -5,8 +5,7 @@ package com.jayus.spring.abstractTest;
  * @date : 2022/11/24 17:24
  * @description :
  **/
-public class SonClass extends abstractClass{
-
+public class SonClass extends SonAbstractClass{
 
 
 }

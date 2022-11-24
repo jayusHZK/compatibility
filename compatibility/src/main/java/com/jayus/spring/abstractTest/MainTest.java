@@ -7,6 +7,7 @@ package com.jayus.spring.abstractTest;
  **/
 public class MainTest {
     public static void main(String[] args) {
-
+        SonClass sonClass = new SonClass();
+        sonClass.refresh();
     }
 }
