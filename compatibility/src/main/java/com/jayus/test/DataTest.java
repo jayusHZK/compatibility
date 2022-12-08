@@ -21,8 +21,8 @@ import java.util.Date;
 public class DataTest {
 
     public static void main(String[] args) {
-        int a = 1;
-        Integer b = new Integer(1);
+        long a = 1;
+        Long b = new Long(1);
         System.out.println(a == b);
 
         JSONObject param = new JSONObject();

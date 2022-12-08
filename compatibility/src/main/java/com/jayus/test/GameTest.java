@@ -1,5 +1,8 @@
 package com.jayus.test;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.Week;
 import cn.hutool.http.HttpResponse;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -10,6 +13,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,34 +23,12 @@ import java.util.concurrent.TimeUnit;
  **/
 public class GameTest {
 
-    Class clazz = getClass();
+    private static Integer[] bossArr = {1,2,3,4,5,6,7,8,9,10};
 
     public static void main(String[] args) throws InterruptedException {
-        GameTest gameTest = new GameTest();
-        System.out.println(gameTest.clazz.getSimpleName());
-        for (int i = 0; i < 1000; i++) {
-            System.out.println("当前执行到" + i);
-            TimeUnit.SECONDS.sleep(1L);
-            JSONObject heroParam = new JSONObject();
-            heroParam.put("uid", i);
-            JSONArray heroJsonArray = new JSONArray();
-            JSONObject hero = new JSONObject();
-            hero.put("heroId","1");
-            heroJsonArray.add(hero);
-            heroParam.put("heroList",heroJsonArray);
-            HttpUtil.createPost("http://localhost:11000/hero/report")
-                    .body(String.valueOf(heroParam)).execute();
-
-            JSONObject itemParam = new JSONObject();
-            itemParam.put("uid", i);
-            JSONArray itemJsonArray = new JSONArray();
-            JSONObject item = new JSONObject();
-            item.put("itemsId","1");
-            itemJsonArray.add(item);
-            itemParam.put("gameUserItemNewList",itemJsonArray);
-            HttpUtil.createPost("http://localhost:11000/item/report")
-                    .body(String.valueOf(itemParam)).execute();
-        }
-
+        DateTime date = DateUtil.parse("2022/11/28");
+        //int i = DateUtil.w(date);
+        //System.out.println(i);
+        //bossArr[DateUtil.dayOfWeek(date) % bossArr.length];
     }
 }
