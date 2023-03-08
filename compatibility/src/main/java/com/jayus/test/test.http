@@ -1,0 +1,12 @@
+POST /v1.1.0/theme////list// HTTP/1.1
+Content-Type: application/json
+User-Agent: PostmanRuntime/7.29.2
+Accept: */*
+Host: 47.107.48.191:14008
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Length: 17
+
+{"styleId":12312}
+
+###
