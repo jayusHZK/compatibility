@@ -1,6 +1,10 @@
 package com.jayus.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,6 +12,7 @@ import java.util.List;
  * @date : 2022/6/21 10:56
  * @description :
  **/
+@Data
 public class UserVO{
 
     public UserVO() {
@@ -22,6 +27,9 @@ public class UserVO{
     private String password;
 
     private Integer age;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private Date date;
 
     private List<UserVO> friendList = new ArrayList<>();
 
