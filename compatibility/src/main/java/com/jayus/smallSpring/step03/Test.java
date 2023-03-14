@@ -1,6 +1,6 @@
 package com.jayus.smallSpring.step03;
 
-import com.jayus.smallSpring.service.UserService2;
+import com.jayus.smallSpring.bean.UserService2;
 import com.jayus.smallSpring.step03.factory.config.BeanDefinition;
 import com.jayus.smallSpring.step03.factory.support.DefaultListableBeanFactory;
 import net.sf.cglib.proxy.Enhancer;

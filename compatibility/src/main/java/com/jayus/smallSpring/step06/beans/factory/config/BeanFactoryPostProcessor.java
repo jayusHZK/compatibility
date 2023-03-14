@@ -1,6 +1,7 @@
 package com.jayus.smallSpring.step06.beans.factory.config;
 
 import com.jayus.smallSpring.step06.beans.BeansException;
+import com.jayus.smallSpring.step06.beans.factory.ConfigurableListableBeanFactory;
 
 /**
  * @author : h zk
@@ -9,6 +10,6 @@ import com.jayus.smallSpring.step06.beans.BeansException;
  **/
 public interface BeanFactoryPostProcessor {
 
-    void postProcessBeanFactory(ConfigurableBeanFactory beanFactory) throws BeansException;
+    void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 
 }

@@ -19,16 +19,30 @@ public class consumerTest {
         }, 1, age -> {
             System.out.println("consumer2:" + age);
         });
+        consumerTest consumerTest = new consumerTest();
+        consumerTest.a(new Object(),consumerTest::operatorString2);
     }
+
+    private void operatorString2(Object o) {
+        System.out.println(1);
+    }
+
 
     public static void operatorString(String name, Consumer<String> consumer) {
         consumer.accept(name);
     }
+
 
     public static void operatorString(String name, Consumer<String> consumer, Integer age, Consumer<Integer> consumer2) {
         consumer.accept(name);
         consumer2.accept(age);
         //consumer.andThen(consumer2).accept(name);
     }
+
+    public void a(Object t,Consumer<Object> consumer){
+        consumer.accept(t);
+    }
+
+
 
 }
