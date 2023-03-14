@@ -48,6 +48,8 @@ public class JackSonTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(treeNode.get("username").asText());
+        JsonNode friendList = treeNode.get("friendList");
+        System.out.println(friendList.get(0).get("username").asText());
+        System.out.println();
     }
 }
