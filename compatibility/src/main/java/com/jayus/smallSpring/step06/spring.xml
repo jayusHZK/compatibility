@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+    <bean id="userDao" class="com.jayus.smallSpring.step05.bean.UserDao"/>
+
+    <bean id="userService" class="com.jayus.smallSpring.step05.bean.UserService">
+        <property name="uid" value="1"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+</beans>

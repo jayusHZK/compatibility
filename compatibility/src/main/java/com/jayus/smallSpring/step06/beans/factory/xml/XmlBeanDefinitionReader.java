@@ -83,9 +83,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             }
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
-                if (!(childNodes.item(j) instanceof Element)) continue;
-                if (!childNodes.item(j).getNodeName().equals("property")) continue;
-                Element property = (Element) bean.getChildNodes().item(i);
+                if (!(bean.getChildNodes().item(j) instanceof Element)) continue;
+                if (!bean.getChildNodes().item(j).getNodeName().equals("property")) continue;
+                Element property = (Element) bean.getChildNodes().item(j);
                 String attrName = property.getAttribute("name");
                 String attrValue = property.getAttribute("value");
                 String attrRef = property.getAttribute("ref");

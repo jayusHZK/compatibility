@@ -22,7 +22,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
     @Override
     protected Object createBean(String name, BeanDefinition beanDefinition, Object[] args) throws BeansException {
-        return null;
+        Object bean = null;
+        try {
+            bean= createBeanInstance(beanDefinition,name,args);
+            applyPropertyValues(name,bean,beanDefinition);
+            bean = initializeBean(name,bean,beanDefinition);
+        } catch (Exception e) {
+            throw new BeansException("Instantiation of bean failed", e);
+        }
+        return bean;
     }
 
     protected Object createBeanInstance(BeanDefinition beanDefinition,String beanName,Object[] args) {
@@ -63,7 +71,16 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         this.instantiationStrategy = instantiationStrategy;
     }
 
-    private void invokeInitMethods(String beanName,Object wrappendBean,BeanDefinition beanDefinition){
+    private Object initializeBean(String beanName,Object bean,BeanDefinition beanDefinition){
+        // 执行 BeanPostProcessor Before 处理
+        Object wrappedBean = applyBeanPostProcessorBeforeInitialization(bean, beanName);
+        // 待完成内容 invokeInitMethods
+        invokeInitMethods(beanName,wrappedBean,beanDefinition);
+        wrappedBean = applyBeanPostProcessorBeforeInitialization(wrappedBean,beanName);
+        return wrappedBean;
+    }
+
+    private void invokeInitMethods(String beanName,Object wrappedBean,BeanDefinition beanDefinition){
 
     }
 

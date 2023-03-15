@@ -1,10 +1,12 @@
 package com.jayus.smallSpring.step06.test;
 
 
+import com.jayus.smallSpring.step06.bean.UserService;
 import com.jayus.smallSpring.step06.beans.factory.support.DefaultListableBeanFactory;
 import com.jayus.smallSpring.step06.beans.factory.xml.XmlBeanDefinitionReader;
 import com.jayus.smallSpring.step06.common.MyBeanFactoryPostProcessor;
 import com.jayus.smallSpring.step06.common.MyBeanPostProcessor;
+import com.jayus.smallSpring.step06.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @Author: h zk
@@ -22,7 +24,15 @@ public class Test {
         beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
         MyBeanPostProcessor beanPostProcessor = new MyBeanPostProcessor();
         beanFactory.addBeanPostProcessor(beanPostProcessor);
+        UserService userService = beanFactory.getBean("userService", UserService.class);
+        System.out.println(userService.queryUserInfo());
+        test_xml();
+    }
 
+    static void test_xml() {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:springPostProcessor.xml");
+        UserService userService = applicationContext.getBean("userService", UserService.class);
+        System.out.println(userService.queryUserInfo());
     }
 
 }
