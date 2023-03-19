@@ -1,6 +1,7 @@
 package com.jayus.smallSpring.step07.beans.factory.config;
 
 import com.jayus.smallSpring.step07.beans.BeansException;
+import com.jayus.smallSpring.step07.beans.factory.ConfigurableListableBeanFactory;
 
 /**
  * @author : h zk
@@ -9,6 +10,11 @@ import com.jayus.smallSpring.step07.beans.BeansException;
  **/
 public interface BeanFactoryPostProcessor {
 
-    void postProcessBeanFactory() throws BeansException;
+    /**
+     *  在所有 BeanDefinition 加载完成后，实例化 Bean 对象之前，提供修改 BeanDefinition 属性的机制
+     * @param beanFactory
+     * @throws BeansException
+     */
+    void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 
 }
