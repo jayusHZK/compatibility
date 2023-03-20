@@ -80,6 +80,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
     @Override
     public void registShutdownHook() {
+        // 在jvm 关闭之前调用指定方法
+        /*
+         Runtime.getRuntime().addShutdownHook 用来在jvm 中增加一个关闭的钩子。
+         当jvm关闭时，会执行系统中设置的所有通过方法addShutdownHook添加的钩子，
+         当系统执行完这些钩子后，jvm才会关闭。所以可以通过这些钩子在jvm关闭时进行内存清理、资源回收等工作
+         */
+
         Runtime.getRuntime().addShutdownHook(new Thread(this::close));
     }
 
