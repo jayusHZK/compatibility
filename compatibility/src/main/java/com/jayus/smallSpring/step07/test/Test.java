@@ -17,7 +17,9 @@ public class Test {
     }
 
     public static void test_xml() {
+        // 执行好一切初始化工作，bean的初始化和依赖注入
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        // 创建 jvm 关闭钩子函数
         applicationContext.registShutdownHook();
 
         UserService userService = applicationContext.getBean("userService", UserService.class);
