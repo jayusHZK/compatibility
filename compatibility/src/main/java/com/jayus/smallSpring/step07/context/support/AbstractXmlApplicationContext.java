@@ -5,7 +5,7 @@ import com.jayus.smallSpring.step07.beans.factory.xml.XmlBeanDefinitionReader;
 
 /**
  * @Author: h zk
- * @Description:
+ * @Description: xml 配置读取
  * @Date: 2023/3/19 22:47
  * @Version: 1.0
  */

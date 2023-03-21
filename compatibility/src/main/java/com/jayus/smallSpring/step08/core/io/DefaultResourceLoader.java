@@ -1,4 +1,4 @@
-package com.jayus.smallSpring.step07.core.io;
+package com.jayus.smallSpring.step08.core.io;
 
 import cn.hutool.core.lang.Assert;
 
@@ -7,8 +7,8 @@ import java.net.URL;
 
 /**
  * @Author: h zk
- * @Description: 默认配置加载器
- * @Date: 2023/3/16 23:20
+ * @Description:
+ * @Date: 2023/3/21 23:32
  * @Version: 1.0
  */
 public class DefaultResourceLoader implements ResourceLoader {
