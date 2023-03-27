@@ -15,7 +15,7 @@ public class BeanDefinition {
 
     private String initMethodName;
 
-    private String destoryMethodName;
+    private String destroyMethodName;
 
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;
@@ -51,11 +51,11 @@ public class BeanDefinition {
         this.initMethodName = initMethodName;
     }
 
-    public String getDestoryMethodName() {
-        return destoryMethodName;
+    public String getDestroyMethodName() {
+        return destroyMethodName;
     }
 
-    public void setDestoryMethodName(String destoryMethodName) {
-        this.destoryMethodName = destoryMethodName;
+    public void setDestroyMethodName(String destroyMethodName) {
+        this.destroyMethodName = destroyMethodName;
     }
 }

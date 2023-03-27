@@ -21,11 +21,11 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 
     /**
      * 执行 BeanPostProcessors 接口实现类的 postProcessorsAfterInitialization 方法
-     * @param exisitingBean
+     * @param existingBean
      * @param beanName
      * @return
      * @throws BeansException
      */
-    Object applyBeanProcessorsAfterInitialization(Object exisitingBean,String beanName) throws BeansException;
+    Object applyBeanPostProcessorsAfterInitialization(Object existingBean,String beanName) throws BeansException;
 
 }
