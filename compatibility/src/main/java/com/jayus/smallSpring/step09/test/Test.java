@@ -3,6 +3,7 @@ package com.jayus.smallSpring.step09.test;
 import com.jayus.smallSpring.step09.bean.UserService;
 import com.jayus.smallSpring.step09.context.support.ClassPathXmlApplicationContext;
 import com.jayus.vo.UserVO;
+import org.openjdk.jol.info.ClassLayout;
 
 /**
  * @author : h zk
@@ -27,6 +28,9 @@ public class Test {
 
         System.out.println(userService1);
         System.out.println(userService2);
+
+        System.out.println(userService1 + "十六进制哈希："+Integer.toHexString(userService1.hashCode()));
+        System.out.println(ClassLayout.parseInstance(userService1).toPrintable());
 
         System.out.println(userService1.queryUserInfo());
     }
