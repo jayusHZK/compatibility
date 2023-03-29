@@ -30,7 +30,7 @@ public interface BeanDefinitionRegistry {
      * @param beanName
      * @return
      */
-    boolean containBeanDefinition(String beanName);
+    boolean containsBeanDefinition(String beanName);
 
     /**
      * 返回注册表中所有的 Bean 名称
