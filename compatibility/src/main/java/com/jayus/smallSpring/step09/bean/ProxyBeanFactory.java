@@ -18,7 +18,9 @@ public class ProxyBeanFactory implements FactoryBean<IUserDao> {
     @Override
     public IUserDao getObject() throws BeansException {
         InvocationHandler handler = (proxy,method,args) -> {
-          if ("toString".equals(method.getName())) return this.toString();
+          if ("toString".equals(method.getName())) {
+              return this.toString();
+          }
             Map<String, String> hashMap = new HashMap<>();
             hashMap.put("1", "a");
             hashMap.put("2", "b");
