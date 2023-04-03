@@ -25,7 +25,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
     @Override
     public boolean containsBeanDefinition(String beanName) {
-        return beanName.contains(beanName);
+        return beanDefinitionMap.containsKey(beanName);
     }
 
     @Override
