@@ -19,7 +19,7 @@ public class BeanDefinition {
 
     private String initMethodName;
 
-    private String destoryMethodName;
+    private String destroyMethodName;
 
     private String scope = SCOPE_SINGLETON;
 
@@ -68,11 +68,19 @@ public class BeanDefinition {
         this.initMethodName = initMethodName;
     }
 
-    public String getDestoryMethodName() {
-        return destoryMethodName;
+    public String getDestroyMethodName() {
+        return destroyMethodName;
     }
 
-    public void setDestoryMethodName(String destoryMethodName) {
-        this.destoryMethodName = destoryMethodName;
+    public void setDestroyMethodName(String destroyMethodName) {
+        this.destroyMethodName = destroyMethodName;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
     }
 }
