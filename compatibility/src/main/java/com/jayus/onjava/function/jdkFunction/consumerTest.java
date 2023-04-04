@@ -1,4 +1,4 @@
-package com.jayus.onjava.thirteen.jdkFunction;
+package com.jayus.onjava.function.jdkFunction;
 
 import java.util.function.Consumer;
 
