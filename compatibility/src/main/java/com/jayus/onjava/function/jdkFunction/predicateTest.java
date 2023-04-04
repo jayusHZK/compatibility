@@ -1,5 +1,7 @@
 package com.jayus.onjava.function.jdkFunction;
 
+import com.jayus.vo.UserVO;
+
 import java.util.function.Predicate;
 
 /**
@@ -8,6 +10,9 @@ import java.util.function.Predicate;
  * @description : 判断使用，判断方式写在匿名内部类中，有返回值
  **/
 public class predicateTest {
+
+    // 有入参返回boolean值
+    Predicate<Integer> p = new UserVO()::isOld;
 
     public static void main(String[] args) {
         System.out.println(check("name", str -> {

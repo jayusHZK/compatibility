@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 /**
  * @author : h zk
  * @date : 2022/7/20 15:48
- * @description :
+ * @description : 方法可以抽成 function接口
  **/
 public class test {
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.jayus.onjava.function.jdkFunction;
 
+import com.jayus.vo.UserVO;
+
 import java.util.function.Consumer;
 
 /**
@@ -8,6 +10,9 @@ import java.util.function.Consumer;
  * @description : 处理对象，处理方式使用匿名方法创建 无返回值
  **/
 public class consumerTest {
+
+    // 有参数无返回值 无法获取返回值
+    Consumer<String> c = new UserVO()::setUsername;
 
     public static void main(String[] args) {
         operatorString("name", name -> {

@@ -65,6 +65,14 @@ public class UserVO{
         this.friendList = friendList;
     }
 
+    public Integer setString(String s){
+        return 1;
+    }
+
+    public boolean isOld(Integer i){
+        return true;
+    }
+
     @Override
     public String toString() {
         return "UserVO{" +
@@ -74,4 +82,5 @@ public class UserVO{
                 ", friendList=" + friendList +
                 '}';
     }
+
 }

@@ -1,5 +1,7 @@
 package com.jayus.onjava.function.jdkFunction;
 
+import com.jayus.vo.UserVO;
+
 import java.util.function.Function;
 
 /**
@@ -8,6 +10,9 @@ import java.util.function.Function;
  * @description : 有返回值
  **/
 public class functionTest {
+
+    // 传入参数,返回值 有入参 有返回值
+    Function<String,Integer> f = new UserVO()::setString;
 
     public static void main(String[] args) {
         System.out.println(convert("5", (str -> {

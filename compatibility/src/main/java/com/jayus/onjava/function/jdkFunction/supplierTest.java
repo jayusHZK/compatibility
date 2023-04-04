@@ -1,5 +1,7 @@
 package com.jayus.onjava.function.jdkFunction;
 
+import com.jayus.vo.UserVO;
+
 import java.util.function.Supplier;
 
 /**
@@ -8,6 +10,10 @@ import java.util.function.Supplier;
  * @description : 传入参数进行处理
  **/
 public class supplierTest {
+
+    // 无入参有返回值
+    Supplier<String> s = new UserVO()::getUsername;
+
     public static void main(String[] args) {
         String a = "abc";
         System.out.println(get(() -> a));
