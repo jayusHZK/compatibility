@@ -22,6 +22,7 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>2021.0.1.0</version>
         </dependency>
+
         <!--springcloud alibaba nacos client 服务中心-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -120,6 +121,19 @@
             <artifactId>jol-cli</artifactId>
             <version>0.14</version>
         </dependency>
+
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>

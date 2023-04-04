@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * @author : h zk
  * @date : 2023/4/3 15:14
- * @description :
+ * @description : 事件监听器广播类
  **/
 public abstract class AbstractApplicationEventMulticaster implements ApplicationEventMulticaster, BeanFactoryAware {
 
