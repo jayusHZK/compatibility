@@ -1,8 +1,5 @@
 package com.jayus.onjava.nineteen.reflect;
 
-import org.omg.CORBA.IRObject;
-
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

@@ -6,7 +6,7 @@ import com.jayus.smallSpring.step10.context.ApplicationEvent;
 /**
  * @author : h zk
  * @date : 2023/4/3 14:06
- * @description :
+ * @description : 事件顶级父类
  **/
 public class ApplicationContextEvent extends ApplicationEvent {
 

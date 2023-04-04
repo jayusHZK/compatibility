@@ -21,6 +21,7 @@ import java.util.Set;
  **/
 public abstract class AbstractApplicationEventMulticaster implements ApplicationEventMulticaster, BeanFactoryAware {
 
+    // 监听器集合
     public final Set<ApplicationListener<ApplicationEvent>> applicationListeners = new LinkedHashSet<>();
 
     private BeanFactory beanFactory;

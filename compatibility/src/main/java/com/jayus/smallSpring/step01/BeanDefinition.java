@@ -1,7 +1,5 @@
 package com.jayus.smallSpring.step01;
 
-import com.jayus.onjava.thirteen.seriorFunction.O;
-
 public class BeanDefinition {
 
     private Object bean;
