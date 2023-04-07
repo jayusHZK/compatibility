@@ -14,5 +14,7 @@ public class ListTest {
         list.add(1);
         list.set(0,2);
         System.out.println(list.get(0));
+
+        System.out.println(list.contains(1));
     }
 }
