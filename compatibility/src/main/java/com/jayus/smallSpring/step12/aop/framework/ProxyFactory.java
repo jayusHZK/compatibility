@@ -17,9 +17,9 @@ public class ProxyFactory {
 
     private AopProxy createAopProxy(){
         if (advisedSupport.isProxyTargetClass()){
-            return null;
+            return new Cglib2AopProxy(advisedSupport);
         }
-        return null;
+        return new JdkDynamicAopProxy(advisedSupport);
     }
 
 }
