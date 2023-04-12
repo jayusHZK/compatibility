@@ -7,6 +7,7 @@ import com.jayus.smallSpring.step12.beans.PropertyValue;
 import com.jayus.smallSpring.step12.beans.PropertyValues;
 import com.jayus.smallSpring.step12.beans.factory.*;
 import com.jayus.smallSpring.step12.beans.factory.config.*;
+import org.aspectj.lang.annotation.Aspect;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -17,7 +18,8 @@ import java.lang.reflect.Method;
  * @Date: 2023/4/10 22:12
  * @Version: 1.0
  */
-public abstract class AbstractAutoCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
+@Aspect
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory implements AutowireCapableBeanFactory {
 
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
@@ -44,7 +46,7 @@ public abstract class AbstractAutoCapableBeanFactory extends AbstractBeanFactory
     }
 
     protected Object resolveBeforeInstantiation(String beanName, BeanDefinition beanDefinition) {
-        Object bean = applyBeanPostProcessorBeforeInitialization(beanDefinition.getBeanClass(), beanName);
+        Object bean = applyBeanPostProcessorsBeforeInstantiation(beanDefinition.getBeanClass(), beanName);
         if (null != bean) {
             bean = applyBeanProcessorsAfterInitialization(bean, beanName);
         }
@@ -143,4 +145,25 @@ public abstract class AbstractAutoCapableBeanFactory extends AbstractBeanFactory
         }
     }
 
+    @Override
+    public Object applyBeanPostProcessorBeforeInitialization(Object existingBean, String beanName) {
+        Object result = existingBean;
+        for (BeanPostProcessor processor : getBeanPostProcessors()) {
+            Object current = processor.postProcessBeforeInitialization(result, beanName);
+            if (current == null) return result;
+            result = current;
+        }
+        return result;
+    }
+
+    @Override
+    public Object applyBeanProcessorsAfterInitialization(Object existingBean, String beanName) {
+        Object result = existingBean;
+        for (BeanPostProcessor processor : getBeanPostProcessors()) {
+            Object current = processor.postProcessAfterInitialization(result, beanName);
+            if (current == null) return result;
+            result = current;
+        }
+        return result;
+    }
 }

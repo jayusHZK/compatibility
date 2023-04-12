@@ -15,6 +15,10 @@ public class ProxyFactory {
         this.advisedSupport = advisedSupport;
     }
 
+    public Object getrProxy(){
+        return createAopProxy().getProxy();
+    }
+
     private AopProxy createAopProxy(){
         if (advisedSupport.isProxyTargetClass()){
             return new Cglib2AopProxy(advisedSupport);
