@@ -28,6 +28,6 @@ public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
     @Override
     public Object invoke(@Nonnull MethodInvocation invocation) throws Throwable {
         this.advice.before(invocation.getMethod(),invocation.getArguments(),invocation.getThis());
-        return invocation;
+        return invocation.proceed();
     }
 }
