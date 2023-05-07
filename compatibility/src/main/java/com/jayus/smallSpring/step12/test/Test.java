@@ -33,7 +33,7 @@ public class Test {
     public static void main(String[] args) {
         //test_proxyFactory();
         //test_beforeAdvice();
-        test_advisor();
+        //test_advisor();
     }
 
     public static void test_proxyFactory() {
