@@ -1,7 +1,6 @@
 package com.jayus.controller;
 
 import com.jayus.vo.UserVO;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +27,15 @@ public class testController {
     @RequestMapping("b")
     public UserVO a(){
         UserVO userVO = new UserVO();
-        userVO.setDate(new Date());
+        userVO.setPassword(new Date().toString());
         return userVO;
+    }
+
+    public static void main(String[] args) {
+        int a = 1;
+        while (a == 1){
+            //System.out.println(1);
+        }
+
     }
 }
