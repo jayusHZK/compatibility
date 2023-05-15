@@ -26,10 +26,6 @@ public class ClassPathXmlApplicationContext extends AbstractXmlApplicationContex
         return configLocations;
     }
 
-    @Override
-    public String[] getBeanDefinitionNames() {
-        return new String[0];
-    }
 }
 
 

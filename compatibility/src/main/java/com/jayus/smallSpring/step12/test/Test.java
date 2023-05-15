@@ -11,6 +11,7 @@ import com.jayus.smallSpring.step12.aop.framework.adapter.MethodBeforeAdviceInte
 import com.jayus.smallSpring.step12.bean.IUserService;
 import com.jayus.smallSpring.step12.bean.UserService;
 import com.jayus.smallSpring.step12.bean.UserServiceBeforeAdvice;
+import com.jayus.smallSpring.step12.context.support.ClassPathXmlApplicationContext;
 import org.aopalliance.intercept.MethodInterceptor;
 
 /**
@@ -33,7 +34,8 @@ public class Test {
     public static void main(String[] args) {
         //test_proxyFactory();
         //test_beforeAdvice();
-        test_advisor();
+        //test_advisor();
+        test_aop();
     }
 
     public static void test_proxyFactory() {
@@ -75,7 +77,9 @@ public class Test {
     }
 
     public static void test_aop(){
-        //new classpathx
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        IUserService userService = applicationContext.getBean("userService", IUserService.class);
+        System.out.println("测试结果："+userService.queryUserInfo());
     }
 
 }
