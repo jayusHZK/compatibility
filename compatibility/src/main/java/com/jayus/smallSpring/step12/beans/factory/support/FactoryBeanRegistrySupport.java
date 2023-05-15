@@ -22,19 +22,19 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
     }
 
     protected Object getObjectFromFactoryBean(FactoryBean factory, String beanName) {
-        if (factory.isSingleton()){
+        if (factory.isSingleton()) {
             Object object = this.factoryBeanObjectCache.get(beanName);
-            if (object == null){
-                object  = doGetObjectFromFactoryBean(factory, beanName);
-                this.factoryBeanObjectCache.put(beanName,object != null ? object:null);
+            if (object == null) {
+                object = doGetObjectFromFactoryBean(factory, beanName);
+                this.factoryBeanObjectCache.put(beanName, object != null ? object : NULL_OBJECT);
             }
-            return object != NULL_OBJECT ? object:null;
+            return object != NULL_OBJECT ? object : null;
         } else {
-            return doGetObjectFromFactoryBean(factory,beanName);
+            return doGetObjectFromFactoryBean(factory, beanName);
         }
     }
 
-    private Object doGetObjectFromFactoryBean(final FactoryBean factory,final String beanName){
+    private Object doGetObjectFromFactoryBean(final FactoryBean factory, final String beanName) {
         try {
             return factory.getObject();
         } catch (Exception e) {
