@@ -1,6 +1,5 @@
 package com.jayus.onjava.concurrent.CompletableFuture;
 
-import sun.java2d.pipe.SpanIterator;
 
 import java.util.concurrent.CompletableFuture;
 
