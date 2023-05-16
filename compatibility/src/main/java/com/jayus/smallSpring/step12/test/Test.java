@@ -3,16 +3,22 @@ package com.jayus.smallSpring.step12.test;
 import com.jayus.smallSpring.step11.bean.UserServiceInterceptor;
 import com.jayus.smallSpring.step12.aop.AdvisedSupport;
 import com.jayus.smallSpring.step12.aop.ClassFilter;
+import com.jayus.smallSpring.step12.aop.MethodMatcher;
 import com.jayus.smallSpring.step12.aop.TargetSource;
 import com.jayus.smallSpring.step12.aop.aspectj.AspectJExpressionPointcut;
 import com.jayus.smallSpring.step12.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import com.jayus.smallSpring.step12.aop.framework.ProxyFactory;
+import com.jayus.smallSpring.step12.aop.framework.ReflectiveMethodInvocation;
 import com.jayus.smallSpring.step12.aop.framework.adapter.MethodBeforeAdviceInterceptor;
 import com.jayus.smallSpring.step12.bean.IUserService;
 import com.jayus.smallSpring.step12.bean.UserService;
 import com.jayus.smallSpring.step12.bean.UserServiceBeforeAdvice;
 import com.jayus.smallSpring.step12.context.support.ClassPathXmlApplicationContext;
 import org.aopalliance.intercept.MethodInterceptor;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * @author : h zk
@@ -35,7 +41,8 @@ public class Test {
         //test_proxyFactory();
         //test_beforeAdvice();
         //test_advisor();
-        test_aop();
+        //test_aop();
+        test_proxy_method();
     }
 
     public static void test_proxyFactory() {
@@ -80,6 +87,36 @@ public class Test {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
         IUserService userService = applicationContext.getBean("userService", IUserService.class);
         System.out.println("测试结果："+userService.queryUserInfo());
+    }
+
+    public static void test_proxy_method(){
+        Object tatgetObj = new UserService();
+
+        IUserService proxy = (IUserService)Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(), tatgetObj.getClass().getInterfaces(), new InvocationHandler() {
+
+            MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* com.jayus.smallSpring.step12.bean.IUserService.*(..))");
+
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                if (methodMatcher.matches(method,tatgetObj.getClass())){
+                    MethodInterceptor methodInterceptor = invocation -> {
+                        long start = System.currentTimeMillis();
+                        try {
+                            return invocation.proceed();
+                        } finally {
+                            System.out.println("监控 - Begin By AOP");
+                            System.out.println("方法名称：" + invocation.getMethod().getName());
+                            System.out.println("方法耗时：" + (System.currentTimeMillis() - start) + "ms");
+                            System.out.println("监控 - End\r\n");
+                        }
+                    };
+                    return methodInterceptor.invoke(new ReflectiveMethodInvocation(tatgetObj,method,args));
+                }
+                return method.invoke(tatgetObj,args);
+            }
+        });
+        System.out.println("测试结果" + proxy.queryUserInfo());
+
     }
 
 }

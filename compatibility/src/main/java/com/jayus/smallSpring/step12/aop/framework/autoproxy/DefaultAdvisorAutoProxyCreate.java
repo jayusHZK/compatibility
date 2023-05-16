@@ -1,9 +1,6 @@
 package com.jayus.smallSpring.step12.aop.framework.autoproxy;
 
-import com.jayus.smallSpring.step12.aop.AdvisedSupport;
-import com.jayus.smallSpring.step12.aop.ClassFilter;
-import com.jayus.smallSpring.step12.aop.Pointcut;
-import com.jayus.smallSpring.step12.aop.TargetSource;
+import com.jayus.smallSpring.step12.aop.*;
 import com.jayus.smallSpring.step12.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import com.jayus.smallSpring.step12.aop.framework.ProxyFactory;
 import com.jayus.smallSpring.step12.beans.BeansException;
@@ -60,7 +57,7 @@ public class DefaultAdvisorAutoProxyCreate implements InstantiationAwareBeanPost
     }
 
     private boolean isInfrastructureClass(Class<?> beanClass) {
-        return Advice.class.isAssignableFrom(beanClass) || Pointcut.class.isAssignableFrom(beanClass);
+        return Advice.class.isAssignableFrom(beanClass) || Pointcut.class.isAssignableFrom(beanClass) || Advisor.class.isAssignableFrom(beanClass);
     }
 
     @Override
