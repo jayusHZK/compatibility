@@ -24,6 +24,7 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
 
     private final PointcutExpression pointcutExpression;
 
+    //创建切面
     public AspectJExpressionPointcut(String expression) {
         PointcutParser pointcutParser = PointcutParser.getPointcutParserSupportingSpecifiedPrimitivesAndUsingSpecifiedClassLoaderForResolution(SUPPORTED_PRIMITIVES, this.getClass().getClassLoader());
         pointcutExpression = pointcutParser.parsePointcutExpression(expression);
