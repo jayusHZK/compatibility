@@ -1,4 +1,4 @@
-package com.jayus.smallSpring.step13.beans.config;
+package com.jayus.smallSpring.step13.beans.factory.config;
 
 import com.jayus.smallSpring.step13.beans.factory.HierarchicalBeanFactory;
 
