@@ -41,8 +41,8 @@ public class Test {
         //test_proxyFactory();
         //test_beforeAdvice();
         //test_advisor();
-        //test_aop();
-        test_proxy_method();
+        test_aop();
+        //test_proxy_method();
     }
 
     public static void test_proxyFactory() {
