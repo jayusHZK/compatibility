@@ -14,6 +14,7 @@ import java.util.Date;
  */
 @RefreshScope
 @RestController
+//@RequestMapping("/test")
 public class testController {
 
    // @Value("${api.client.key}")
@@ -28,6 +29,7 @@ public class testController {
     public UserVO a(){
         UserVO userVO = new UserVO();
         userVO.setPassword(new Date().toString());
+        userVO.setUsername("http://pic.netbian.com/4kdongman/");
         return userVO;
     }
 
@@ -38,4 +40,6 @@ public class testController {
         }
 
     }
+
+
 }
