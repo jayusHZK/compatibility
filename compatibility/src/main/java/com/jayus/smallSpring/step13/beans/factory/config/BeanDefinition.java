@@ -14,7 +14,7 @@ public class BeanDefinition {
 
     private String initMethodName;
 
-    private String destroyName;
+    private String destroyMethodName;
 
     private String scope = SCOPE_SINGLETON;
 
@@ -65,11 +65,12 @@ public class BeanDefinition {
         this.initMethodName = initMethodName;
     }
 
-    public String getDestroyName() {
-        return destroyName;
+
+    public String getDestroyMethodName() {
+        return destroyMethodName;
     }
 
-    public void setDestroyName(String destroyName) {
-        this.destroyName = destroyName;
+    public void setDestroyMethodName(String destroyMethodName) {
+        this.destroyMethodName = destroyMethodName;
     }
 }
