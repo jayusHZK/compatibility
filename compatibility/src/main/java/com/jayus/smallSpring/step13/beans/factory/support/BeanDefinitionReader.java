@@ -6,7 +6,7 @@ import com.jayus.smallSpring.step13.core.io.ResourceLoader;
 
 public interface BeanDefinitionReader {
 
-    BeanDefinitionRegistry getRegisty();
+    BeanDefinitionRegistry getRegistry();
 
     ResourceLoader getResourceLoader();
 
