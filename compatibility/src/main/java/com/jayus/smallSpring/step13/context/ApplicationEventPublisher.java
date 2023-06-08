@@ -1,4 +1,4 @@
-package com.jayus.smallSpring.step13.context.support;
+package com.jayus.smallSpring.step13.context;
 
 public interface ApplicationEventPublisher {
 
