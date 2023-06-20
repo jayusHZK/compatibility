@@ -23,7 +23,22 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean = null;
-        return null;
+        try {
+            bean = resolveBeforeInstantiation(beanName, beanDefinition);
+            if (null != bean){
+                return bean;
+            }
+            bean = createBeanInstance(beanDefinition,beanName,args);
+            applyProperValues(beanName,bean,beanDefinition);
+            bean = initializeBean(beanName,bean,beanDefinition);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        registDisposableBeanIfNecessary(beanName,bean,beanDefinition);
+        if (beanDefinition.isSingleton()){
+            registerSingleton(beanName,bean);
+        }
+        return bean;
     }
 
     protected Object resolveBeforeInstantiation(String beanName, BeanDefinition beanDefinition) {
@@ -56,7 +71,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         Class beanClass = beanDefinition.getBeanClass();
         Constructor[] declaredConstructors = beanClass.getDeclaredConstructors();
         for (Constructor ctor : declaredConstructors) {
-            if (args == null && ctor.getParameterTypes().length == args.length) {
+            if (args != null && ctor.getParameterTypes().length == args.length) {
                 constructorToUse = ctor;
                 break;
             }

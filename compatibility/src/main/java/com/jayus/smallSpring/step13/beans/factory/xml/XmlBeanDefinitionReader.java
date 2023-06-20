@@ -15,6 +15,7 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -30,22 +31,38 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     @Override
     public void loadBeanDefinitions(Resource resource) throws BeansException {
-
+        try {
+            try (InputStream inputStream = resource.getInputStream()){
+                doLoadBeanDefinitions(inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void loadBeanDefinitions(Resource... resources) throws BeansException {
-
+        for (Resource resource : resources) {
+            loadBeanDefinitions(resource);
+        }
     }
 
     @Override
     public void loadBeanDefinitions(String location) throws BeansException {
-
+        ResourceLoader resourceLoader = getResourceLoader();
+        Resource resource = resourceLoader.getResource(location);
+        loadBeanDefinitions(resource);
     }
 
     @Override
     public void loadBeanDefinitions(String... locations) throws BeansException {
-
+        for (String location : locations) {
+            loadBeanDefinitions(location);
+        }
     }
 
     protected void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException, DocumentException {

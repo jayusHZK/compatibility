@@ -33,7 +33,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
     protected <T> T doGetBean(final String name, final Object[] args) {
         Object shareInstance = getSingleton(name);
-        if (shareInstance == null) {
+        if (shareInstance != null) {
             return (T) getObjectForBeanInstance(shareInstance,name);
         }
         BeanDefinition beanDefinition = getBeanDefinition(name);
