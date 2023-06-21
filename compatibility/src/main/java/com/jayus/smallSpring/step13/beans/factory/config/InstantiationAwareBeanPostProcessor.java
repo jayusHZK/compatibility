@@ -1,6 +1,7 @@
 package com.jayus.smallSpring.step13.beans.factory.config;
 
 import com.jayus.smallSpring.step13.beans.BeansException;
+import com.jayus.smallSpring.step13.beans.PropertyValues;
 
 public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
 
@@ -12,5 +13,7 @@ public interface InstantiationAwareBeanPostProcessor extends BeanPostProcessor {
      * @throws BeansException
      */
     Object postProcessBeforeInstantiation(Class<?> beanClass,String beanName) throws BeansException;
+
+    PropertyValues postProcessPropertyValues(PropertyValues pvs, Object bean,String beanName) throws BeansException;
 
 }

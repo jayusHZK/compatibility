@@ -1,7 +1,12 @@
-package com.jayus.smallSpring.step13.aop.framework;
+package com.jayus.smallSpring.step14.aop.framework;
 
-import com.jayus.smallSpring.step13.aop.AdvisedSupport;
+import com.jayus.smallSpring.step14.aop.AdvisedSupport;
 
+/**
+ * @author : h zk
+ * @date : 2023/6/21 10:10
+ * @description :
+ **/
 public class ProxyFactory {
 
     private AdvisedSupport advisedSupport;
@@ -11,14 +16,15 @@ public class ProxyFactory {
     }
 
     public Object getProxy(){
-        return createApoProxy().getProxy();
+        return createAopProxy().getProxy();
     }
 
-    private AopProxy createApoProxy() {
+    private AopProxy createAopProxy(){
         if (advisedSupport.isProxyTargetClass()){
             return new Cglib2AopProxy(advisedSupport);
         }
         return new JdkDynamicAopProxy(advisedSupport);
     }
+
 
 }
