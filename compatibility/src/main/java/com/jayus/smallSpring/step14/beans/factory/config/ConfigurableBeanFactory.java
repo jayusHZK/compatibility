@@ -16,7 +16,7 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory,Singlet
 
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
-    void destorySingleton();
+    void destorySingletons();
 
     void addEmbeddedValueResolver(StringValueResolver valueResolver);
 
