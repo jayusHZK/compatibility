@@ -16,9 +16,9 @@ import java.util.List;
 public class test {
 
     public static void main(String[] args) {
-        //test_scan();
+        test_scan();
         //test_property();
-        test_beanPost();
+        //test_beanPost();
     }
 
     public static void test_scan() {
