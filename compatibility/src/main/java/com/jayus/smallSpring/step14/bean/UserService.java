@@ -2,6 +2,7 @@ package com.jayus.smallSpring.step14.bean;
 
 import com.jayus.smallSpring.step14.beans.factory.annotation.Autowired;
 import com.jayus.smallSpring.step14.beans.factory.annotation.Value;
+import com.jayus.smallSpring.step14.stereotype.Component;
 
 import java.util.Random;
 
@@ -10,6 +11,7 @@ import java.util.Random;
  * @date : 2023/6/27 14:05
  * @description :
  **/
+@Component("userService")
 public class UserService implements IUserService {
 
     @Value("${token}")

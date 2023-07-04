@@ -31,7 +31,7 @@ public class AspectJExpressionPointcut implements Pointcut, ClassFilter, MethodM
     }
 
     @Override
-    public boolean metches(Class<?> clazz) {
+    public boolean matches(Class<?> clazz) {
         return pointcutExpression.couldMatchJoinPointsInType(clazz);
     }
 

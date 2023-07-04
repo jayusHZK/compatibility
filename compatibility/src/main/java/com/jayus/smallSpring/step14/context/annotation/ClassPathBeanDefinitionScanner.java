@@ -1,6 +1,7 @@
 package com.jayus.smallSpring.step14.context.annotation;
 
 import cn.hutool.core.util.StrUtil;
+import com.jayus.smallSpring.step14.beans.factory.annotation.AutowiredAnnotationBeanProcessor;
 import com.jayus.smallSpring.step14.beans.factory.config.BeanDefinition;
 import com.jayus.smallSpring.step14.beans.factory.support.BeanDefinitionRegistry;
 import com.jayus.smallSpring.step14.stereotype.Component;
@@ -32,6 +33,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
                 registry.registerBeanDefinition(determineBeanName(beanDefinition),beanDefinition);
             }
         }
+        registry.registerBeanDefinition("cn.bugstack.springframework.context.annotation.internalAutowiredAnnotationProcessor",
+                new BeanDefinition(AutowiredAnnotationBeanProcessor.class));
     }
 
     private String resolveBeanScope(BeanDefinition beanDefinition){
@@ -45,7 +48,7 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
         Class<?> beanClass = beanDefinition.getBeanClass();
         Component component = beanClass.getAnnotation(Component.class);
         String value = component.value();
-        if (StrUtil.isNotEmpty(value)){
+        if (StrUtil.isEmpty(value)){
             value = StrUtil.lowerFirst(beanClass.getSimpleName());
         }
         return value;

@@ -8,6 +8,7 @@ import com.jayus.smallSpring.step14.beans.factory.config.BeanPostProcessor;
 import com.jayus.smallSpring.step14.context.ApplicationEvent;
 import com.jayus.smallSpring.step14.context.ApplicationListener;
 import com.jayus.smallSpring.step14.context.ConfigurableApplicationContext;
+import com.jayus.smallSpring.step14.context.event.ApplicationClosedEvent;
 import com.jayus.smallSpring.step14.context.event.ApplicationEventMulticaster;
 import com.jayus.smallSpring.step14.context.event.ContextRefreshedEvent;
 import com.jayus.smallSpring.step14.context.event.SimpleApplicationEventMulticaster;
@@ -126,7 +127,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
     @Override
     public void close() {
-        publishEvent(new ContextClosedEvent(this));
+        //publishEvent(new ContextClosedEvent(this));
+        publishEvent(new ApplicationClosedEvent(this));
         getBeanFactory().destorySingletons();
     }
 }
