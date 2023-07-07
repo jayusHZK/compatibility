@@ -7,7 +7,7 @@ package com.jayus.smallSpring.step15.core.io;
  **/
 public interface ResourceLoader {
 
-    String classpath_url_orefix = "classpath:";
+    String CLASSPATH_URL_PREFIX = "classpath:";
 
     Resource getResource(String location);
 
