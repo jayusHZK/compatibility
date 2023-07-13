@@ -145,7 +145,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     private Object initializaBean(String beanName,Object bean,BeanDefinition beanDefinition){
         if (bean instanceof Aware){
             if (bean instanceof BeanFactoryAware) {
-                ((BeanFactoryAware) bean).setBeanFacotory(this);
+                ((BeanFactoryAware) bean).setBeanFactory(this);
             }
             if (bean instanceof BeanClassLoaderAware){
                 ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());

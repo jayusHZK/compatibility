@@ -9,6 +9,6 @@ import com.jayus.smallSpring.step15.beans.BeansException;
  **/
 public interface BeanFactoryAware extends Aware {
 
-    void setBeanFacotory(BeanFactory beanFactory) throws BeansException;
+    void setBeanFactory(BeanFactory beanFactory) throws BeansException;
 
 }

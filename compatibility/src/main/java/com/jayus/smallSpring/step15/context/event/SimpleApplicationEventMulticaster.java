@@ -12,7 +12,7 @@ import com.jayus.smallSpring.step15.context.ApplicationListener;
 public class SimpleApplicationEventMulticaster extends AbstractApplicationEventMulticaster{
 
     public SimpleApplicationEventMulticaster(BeanFactory beanFactory) {
-        setBeanFacotory(beanFactory);
+        setBeanFactory(beanFactory);
     }
 
     @Override

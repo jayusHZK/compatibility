@@ -23,7 +23,7 @@ public class AutowiredAnnotationBeanPostProcessor implements InstantiationAwareB
     private ConfigurableListableBeanFactory beanFactory;
 
     @Override
-    public void setBeanFacotory(BeanFactory beanFactory) throws BeansException {
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = (ConfigurableListableBeanFactory) beanFactory;
     }
 

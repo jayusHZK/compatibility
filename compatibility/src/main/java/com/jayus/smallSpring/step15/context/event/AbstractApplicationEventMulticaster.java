@@ -36,7 +36,7 @@ public abstract class AbstractApplicationEventMulticaster implements Application
     }
 
     @Override
-    public void setBeanFacotory(BeanFactory beanFactory) throws BeansException {
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
     }
 
