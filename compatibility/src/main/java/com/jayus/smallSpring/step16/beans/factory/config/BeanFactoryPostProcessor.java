@@ -6,7 +6,7 @@ import com.jayus.smallSpring.step16.beans.factory.ConfigurableListableBeanFactor
 /**
  * @author : h zk
  * @date : 2023/7/14 14:29
- * @description :
+ * @description : 允许自定义修改 BeanDefinition 属性信息
  **/
 public interface BeanFactoryPostProcessor {
 
