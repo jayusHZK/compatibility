@@ -17,7 +17,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy{
     public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
         Class clazz = beanDefinition.getBeanClass();
         try {
-            if (null != clazz){
+            if (null != ctor){
                 return clazz.getDeclaredConstructor(ctor.getParameterTypes()).newInstance(args);
             } else {
                 return clazz.getDeclaredConstructor().newInstance();

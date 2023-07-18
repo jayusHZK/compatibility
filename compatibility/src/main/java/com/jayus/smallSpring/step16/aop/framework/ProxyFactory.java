@@ -15,6 +15,10 @@ public class ProxyFactory {
         this.advisedSupport = advisedSupport;
     }
 
+    public Object getProxy(){
+        return createAopProxy().getProxy();
+    }
+
     public AdvisedSupport getAdvisedSupport() {
         return advisedSupport;
     }
