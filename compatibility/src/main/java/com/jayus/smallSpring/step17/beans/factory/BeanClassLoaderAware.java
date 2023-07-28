@@ -6,4 +6,7 @@ package com.jayus.smallSpring.step17.beans.factory;
  * @description :
  **/
 public interface BeanClassLoaderAware extends Aware {
+
+    void setBeanClassLoader(ClassLoader classLoader);
+
 }
