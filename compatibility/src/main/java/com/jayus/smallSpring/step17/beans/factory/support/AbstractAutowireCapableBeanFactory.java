@@ -12,8 +12,6 @@ import com.jayus.smallSpring.step17.core.convert.ConversionService;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
-import java.sql.Struct;
 
 /**
  * @author : h zk
@@ -30,7 +28,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         if (null != bean) {
             return bean;
         }
-        return do ;
+        return doCreateBean(beanName,beanDefinition,args);
     }
 
     protected Object doCreateBean(String beanName, BeanDefinition beanDefinition, Object[] args) {
@@ -51,6 +49,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
+        registerDisposableBeanIfNecessary(beanName,bean,beanDefinition);
+        Object exposedObject = bean;
+        if (beanDefinition.isSingleton()){
+            exposedObject = getSingleton(beanName);
+            registerSingleton(beanName,exposedObject);
+        }
+        return exposedObject;
     }
 
     protected Object getEarlyBeanReference(String beanName, BeanDefinition beanDefinition, Object bean) {
@@ -107,6 +112,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             }
         }
         return null;
+    }
+
+    protected void registerDisposableBeanIfNecessary(String beanName,Object bean,BeanDefinition beanDefinition){
+        if (!beanDefinition.isSingleton()) return;
+        if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethodName())){
+            registerDisposableBean(beanName,new DisposableBeanAdapter(bean,beanName,beanDefinition));
+        }
     }
 
     protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {

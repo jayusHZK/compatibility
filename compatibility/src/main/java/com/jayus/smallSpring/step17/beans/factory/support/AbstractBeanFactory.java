@@ -84,6 +84,11 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
     }
 
     @Override
+    public void addEmbeddedValueResolver(StringValueResolver valueResolver) {
+        this.embeddedValueResolvers.add(valueResolver);
+    }
+
+    @Override
     public String resolveEmbeddedValue(String value) {
         String result = value;
         for (StringValueResolver resolver : this.embeddedValueResolvers) {
