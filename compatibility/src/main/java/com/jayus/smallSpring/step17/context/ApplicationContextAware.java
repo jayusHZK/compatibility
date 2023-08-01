@@ -1,5 +1,6 @@
 package com.jayus.smallSpring.step17.context;
 
+import com.jayus.smallSpring.step17.beans.BeansException;
 import com.jayus.smallSpring.step17.beans.factory.Aware;
 
 /**
@@ -9,6 +10,6 @@ import com.jayus.smallSpring.step17.beans.factory.Aware;
  **/
 public interface ApplicationContextAware extends Aware {
 
-    void setApplicationContext(app)
+    void setApplicationContext(ApplicationContext applicationContext) throws BeansException;
 
 }
