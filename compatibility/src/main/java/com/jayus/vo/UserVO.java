@@ -1,6 +1,9 @@
 package com.jayus.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.jayus.smallSpring.step17.beans.BeansException;
+import com.jayus.smallSpring.step17.beans.factory.BeanFactory;
+import com.jayus.smallSpring.step17.beans.factory.BeanFactoryAware;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -13,7 +16,12 @@ import java.util.List;
  * @description :
  **/
 @Data
-public class UserVO{
+public class UserVO implements BeanFactoryAware {
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+
+    }
 
     public UserVO() {
     }
