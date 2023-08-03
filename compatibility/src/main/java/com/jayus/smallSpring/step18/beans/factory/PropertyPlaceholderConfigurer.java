@@ -2,8 +2,8 @@ package com.jayus.smallSpring.step18.beans.factory;
 
 /**
  * @author : h zk
- * @date : 2023/8/2 17:28
+ * @date : 2023/8/3 18:04
  * @description :
  **/
-public interface ConfigurableListableBeanFactory extends  {
+public class PropertyPlaceholderConfigurer implements {
 }
