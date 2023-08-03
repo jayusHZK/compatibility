@@ -50,6 +50,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
     protected abstract boolean containsBeanDefinition(String beanName);
 
+    /**
+     * 获取 bean 如 bean 未实例化，则先获取 BeanDefinition 去实例化
+     * @param name
+     * @param args
+     * @return
+     * @param <T>
+     */
     protected <T> T doGetBean(final String name, final Object[] args){
         Object sharedInstance = getSingleton(name);
         if (sharedInstance != null){
@@ -64,6 +71,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
         if (!(beanInstance instanceof FactoryBean)){
             return beanInstance;
         }
+        //
         Object object = getCacheObjectForFactoryBean(beanName);
 
         if (object == null){

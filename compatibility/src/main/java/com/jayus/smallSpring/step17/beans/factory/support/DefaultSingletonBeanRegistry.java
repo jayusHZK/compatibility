@@ -56,6 +56,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
         if (!this.singletonObjects.containsKey(beanName)) {
+            // 对象工厂删除bean 放入提前暴露对象的容器中
             this.singletonFactories.put(beanName, singletonFactory);
             this.earlySingletonObjects.remove(beanName);
         }

@@ -34,11 +34,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object doCreateBean(String beanName, BeanDefinition beanDefinition, Object[] args) {
         Object bean = null;
         try {
-            // 实例化 Bean
+            // 实例化 Bean 只创建对象，未进行属性注入
             bean = createBeanInstance(beanDefinition, beanName, args);
             // 处理循环依赖，将实例化后的 Bean 对象提前放入缓存暴露出来
             if (beanDefinition.isSingleton()) {
                 Object finalBean = bean;
+                //
                 addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, beanDefinition, finalBean));
             }
             // 实例化后判断
@@ -59,7 +60,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         registerDisposableBeanIfNecessary(beanName,bean,beanDefinition);
         Object exposedObject = bean;
         if (beanDefinition.isSingleton()){
+            // 实例化 bean
             exposedObject = getSingleton(beanName);
+            // 将对象(已完成属性注入的bean)放入一级缓存
             registerSingleton(beanName,exposedObject);
         }
         return exposedObject;
