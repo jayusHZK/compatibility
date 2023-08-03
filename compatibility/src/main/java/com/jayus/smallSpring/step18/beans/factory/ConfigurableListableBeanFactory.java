@@ -5,5 +5,5 @@ package com.jayus.smallSpring.step18.beans.factory;
  * @date : 2023/8/2 17:28
  * @description :
  **/
-public interface ConfigurableListableBeanFactory extends {
+public interface ConfigurableListableBeanFactory  {
 }
