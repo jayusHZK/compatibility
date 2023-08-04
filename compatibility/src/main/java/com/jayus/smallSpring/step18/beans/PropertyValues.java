@@ -23,7 +23,7 @@ public class PropertyValues {
         this.propertyValueList.add(pv);
     }
 
-    public PropertyValue[] getPropertyValue(){
+    public PropertyValue[] getPropertyValues(){
         return this.propertyValueList.toArray(new PropertyValue[0]);
     }
 
