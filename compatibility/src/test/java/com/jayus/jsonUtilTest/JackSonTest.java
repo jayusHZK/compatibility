@@ -1,4 +1,4 @@
-package com.jayus;
+package com.jayus.jsonUtilTest;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

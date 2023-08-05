@@ -1,4 +1,4 @@
-package com.jayus;
+package com.jayus.jsonUtilTest;
 
 import com.google.gson.*;
 import com.jayus.vo.UserVO;
