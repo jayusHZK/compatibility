@@ -13,7 +13,7 @@ public class BeanDefinition {
 
     String SCOPE_PROTOTYPE = ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
-    private Class beanClass;
+    private Class<?> beanClass;
 
     private PropertyValues propertyValues;
 

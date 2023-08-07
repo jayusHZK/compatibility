@@ -60,7 +60,8 @@ public class NumberUtils {
      * @see java.math.BigDecimal
      */
     @SuppressWarnings("unchecked")
-    public static <T extends Number> T convertNumberToTargetClass(Number number, Class<T> targetClass)
+    public static <T extends Number> T convertNumberToTargetClass(Number number
+            , Class<T> targetClass)
             throws IllegalArgumentException {
 
         Assert.notNull(number, "Number must not be null");
