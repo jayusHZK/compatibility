@@ -1,6 +1,9 @@
 package com.jayus.controller;
 
 import com.jayus.vo.UserVO;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +20,15 @@ import java.util.Date;
 //@RequestMapping("/test")
 public class testController {
 
-   // @Value("${api.client.key}")
+    @Value("${api.client.key}")
     private String b;
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     @RequestMapping("/a")
     public String getB(){
+        redissonClient.getLock("a").tryLock();
         return b;
     }
 

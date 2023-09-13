@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 封装查询结果数据使用
+ * @param <T>
+ */
 public class RowMapperResultSetExtractor<T> implements ResultSetExtractor<List<T>> {
 
     private final RowMapper<T> rowMapper;

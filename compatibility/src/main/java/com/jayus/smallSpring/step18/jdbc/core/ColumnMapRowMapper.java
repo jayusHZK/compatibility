@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * sql 查询数据遍历解析类
+ */
 public class ColumnMapRowMapper implements RowMapper<Map<String,Object>> {
 
     @Override
@@ -15,7 +18,7 @@ public class ColumnMapRowMapper implements RowMapper<Map<String,Object>> {
         ResultSetMetaData rsMetaData = rs.getMetaData();
         int columnCount = rsMetaData.getColumnCount();
         Map<String, Object> mapOfColumnValues = createColumnMap(columnCount);
-        for (int i = 0; i < columnCount; i++) {
+        for (int i = 1; i <= columnCount; i++) {
             String columnName = JdbcUtils.lookupColumnName(rsMetaData, i);
             mapOfColumnValues.putIfAbsent(getColumnKey(columnName),getColumnValue(rs,i));
         }

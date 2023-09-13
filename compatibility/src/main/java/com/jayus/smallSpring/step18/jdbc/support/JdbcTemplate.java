@@ -163,6 +163,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
     @Override
     public <T> T query(String sql, ResultSetExtractor<T> res) {
+        Assert.notNull(sql, "SQL must not be null");
+        Assert.notNull(res, "ResultSetExtractor must be null");
+
         class QueryStatementCallback implements StatementCallback<T>,SqlProvider{
             @Override
             public String getSql() {
@@ -171,7 +174,9 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
             @Override
             public T doInStatement(Statement statement) throws SQLException {
+                // 执行sql 获取结果
                 ResultSet rs = statement.executeQuery(sql);
+                // 格式化数据
                 return res.extractData(rs);
             }
         }
@@ -229,7 +234,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
 
     @Override
     public Map<String, Object> queryForMap(String sql) {
-        return result(queryForMap(sql,getColumnMapRowMapper()));
+        return result(queryForObject(sql,getColumnMapRowMapper()));
     }
 
     @Override
@@ -267,7 +272,7 @@ public class JdbcTemplate extends JdbcAccessor implements JdbcOperations {
     }
 
     protected <T> RowMapper<T> getSingleColumnRowMapper(Class<T> requiredType){
-        return new SingletColumnRowMapper<>(requiredType);
+        return new SingleColumnRowMapper<>(requiredType);
     }
 
     protected PreparedStatementSetter newArgPreparedStatementSetter(Object[] args){

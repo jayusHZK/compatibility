@@ -8,14 +8,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-public class SingletColumnRowMapper<T> implements RowMapper<T> {
+public class SingleColumnRowMapper<T> implements RowMapper<T> {
 
     private Class<?> requireType;
 
-    public SingletColumnRowMapper() {
+    public SingleColumnRowMapper() {
     }
 
-    public SingletColumnRowMapper(Class<?> requireType) {
+    public SingleColumnRowMapper(Class<?> requireType) {
         this.requireType = requireType;
     }
 
