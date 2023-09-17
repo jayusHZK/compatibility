@@ -18,6 +18,7 @@ public class test {
 
     public static void test_convert(){
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
+        // 获取 bean 时才初始化bean 懒加载
         Husband husband = applicationContext.getBean("husband", Husband.class);
         System.out.println(husband);
     }
