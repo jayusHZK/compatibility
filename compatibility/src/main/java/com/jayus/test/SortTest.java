@@ -11,6 +11,9 @@ import java.util.List;
 public class SortTest {
     public static void main(String[] args) {
 
+        int as = 1;
+
+
         String a = "icon/icon_1.png";
         System.out.println(a.split("/")[1].substring(5).split("\\.")[0]);
 

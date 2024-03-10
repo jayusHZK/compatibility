@@ -5,9 +5,17 @@ package com.jayus.test.extendsTest;
  * @date : 2023/3/27 14:25
  * @description :
  **/
-public abstract class FatherOne {
+public class FatherOne extends FatherThree{
 
-    public abstract void a();
+    int x = 1;
+
+    public FatherOne() {
+        System.out.println("father1");
+    }
+
+    public void a(){
+        System.out.println("b");
+    }
 
     public void b(){
         System.out.println("b");

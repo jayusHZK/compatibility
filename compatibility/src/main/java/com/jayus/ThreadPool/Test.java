@@ -1,7 +1,9 @@
 package com.jayus.ThreadPool;
 
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import com.alibaba.ttl.TransmittableThreadLocal;
+import com.alibaba.ttl.threadpool.TtlExecutors;
+
+import java.util.concurrent.*;
 
 /**
  * @author : h zk
@@ -27,5 +29,9 @@ public class Test {
         threadPoolExecutor.execute(thread);
         threadPoolExecutor.shutdownNow();
         System.out.println("shutdown!");
+
+        TransmittableThreadLocal transmittableThreadLocal = new TransmittableThreadLocal();
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Executor ttlExecutor = TtlExecutors.getTtlExecutor(executor);
     }
 }

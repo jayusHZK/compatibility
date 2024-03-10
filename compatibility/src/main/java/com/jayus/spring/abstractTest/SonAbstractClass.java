@@ -11,4 +11,5 @@ public abstract class SonAbstractClass extends abstractClass{
     protected void refresh() {
         System.out.println("触发抽象类子类实现");
     }
+
 }

@@ -1,6 +1,9 @@
 package com.jayus.ThreadPool;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : h zk
@@ -22,6 +25,7 @@ public class ThreadPoolCreate {
         });
         //thread.setUncaughtExceptionHandler(new ThreadErrorHandler());
         thread.start();
+
     }
 
 

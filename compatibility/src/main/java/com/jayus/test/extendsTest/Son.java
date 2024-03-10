@@ -9,7 +9,12 @@ public class Son extends FatherOne implements FatherTwo{
 
     @Override
     public void a() {
+        //System.out.println(this.x);
+        System.out.println(super.x);
+    }
 
+    public static void main(String[] args) {
+        new Son().a();
     }
 
 }

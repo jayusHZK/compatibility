@@ -19,7 +19,13 @@ public class ShowThread implements Runnable{
     public static void main(String[] args) throws InterruptedException {
         System.out.println(Runtime.getRuntime().availableProcessors()); //获取cpu核数
         ExecutorService exec = Executors.newWorkStealingPool();
-        IntStream.range(0,10).mapToObj(n -> new ShowThread()).forEach(exec::execute);
+        //IntStream.range(0,10).mapToObj(n -> new ShowThread()).forEach(exec::execute);
+        IntStream.range(0,10).mapToObj((n) -> {
+            System.out.println(n);
+            return "a";
+        }).forEach(n -> {
+            System.out.println(n);
+        });
         exec.awaitTermination(1, TimeUnit.SECONDS);
     }
 }

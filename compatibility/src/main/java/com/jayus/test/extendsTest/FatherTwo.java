@@ -7,6 +7,8 @@ package com.jayus.test.extendsTest;
  **/
 public interface FatherTwo {
 
+    int x = 0;
+
     void b();
 
 }

@@ -37,6 +37,7 @@ public class testController {
         UserVO userVO = new UserVO();
         userVO.setPassword(new Date().toString());
         userVO.setUsername("http://pic.netbian.com/4kdongman/");
+        System.out.println("in method b");
         return userVO;
     }
 
