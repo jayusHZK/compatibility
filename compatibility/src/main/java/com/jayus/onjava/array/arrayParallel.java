@@ -1,5 +1,6 @@
 package com.jayus.onjava.array;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.BiFunction;
 
@@ -13,7 +14,7 @@ public class arrayParallel {
         Collections.reverseOrder();
         //Arrays.parallelSort(); //并行排序
         //Arrays.binarySearch() // 二分查找
-//Arrays.setAll();
+        //Arrays.setAll();
         biFunctiontest("1", (s, i) -> Integer.valueOf(s)+i, 3);
     }
 

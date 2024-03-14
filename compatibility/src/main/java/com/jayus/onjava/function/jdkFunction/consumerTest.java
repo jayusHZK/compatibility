@@ -12,7 +12,8 @@ import java.util.function.Consumer;
 public class consumerTest {
 
     // 有参数无返回值 无法获取返回值
-    Consumer<String> c = new UserVO()::setUsername;
+    static Consumer<String> c = new UserVO()::setUsername;
+
 
     public static void main(String[] args) {
         operatorString("name", name -> {

@@ -17,7 +17,7 @@ public class Car {
         this.type = type;
     }
 
-    static enum CarType {
+    enum CarType {
         SEDAN
     }
 

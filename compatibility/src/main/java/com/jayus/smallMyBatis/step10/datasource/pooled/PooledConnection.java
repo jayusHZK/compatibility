@@ -74,7 +74,7 @@ public class PooledConnection implements InvocationHandler {
     }
 
     public boolean isValid(){
-        return valid && realConnection != null && dataSource.pingc
+        return valid && realConnection != null && dataSource.pingConnection(this);
     }
 
     public Connection getRealConnection(){
@@ -129,7 +129,7 @@ public class PooledConnection implements InvocationHandler {
         this.checkoutTimestamp = checkoutTimestamp;
     }
 
-    public long getCheckTime(){
+    public long getCheckoutTime(){
         return System.currentTimeMillis() - checkoutTimestamp;
     }
 

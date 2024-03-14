@@ -22,10 +22,19 @@ public class FilledList<T> extends ArrayList<T> {
         }
     }
 
+    FilledList(Supplier<? extends List> factory,Supplier<T> gen,int size){
+        Suppliers.create(factory,gen,size);
+    }
+
     public static void main(String[] args) {
         List<String> list = new FilledList<>("Hello", 4);
         System.out.println(list);
+        System.out.println("----------");
         FilledList<Integer> ilist = new FilledList<>(() -> 47, 4);
-
+        ilist.forEach(System.out::println);
+        System.out.println("----------");
+        List<Integer> factoryList = new ArrayList<>();
+        Suppliers.create(() -> factoryList, () -> 50, 6);
+        factoryList.forEach(System.out::println);
     }
 }

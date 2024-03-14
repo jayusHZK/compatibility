@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 /**
  * @author : h zk
  * @date : 2023/3/14 11:27
- * @description : 传入参数进行处理
+ * @description : 传入参数进行处理，一般用来传值
  **/
 public class supplierTest {
 

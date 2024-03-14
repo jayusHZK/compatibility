@@ -33,6 +33,6 @@ public class ParallelStreamPuzzle2 {
                 .parallel()
                 .collect(Collectors.toList());
         System.out.println(x);
-        Files.write(Paths.get("PSP2.txt"),TRACE);
+        //Files.write(Paths.get("PSP2.txt"),TRACE);
     }
 }

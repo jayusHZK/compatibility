@@ -17,8 +17,9 @@ public class FunctionalAnnotation {
     public static void main(String[] args) {
         FunctionalAnnotation fa = new FunctionalAnnotation();
         Functional f = fa::hello;
+        System.out.println(f.goodbye("b"));
         FunctionalNoAnn fna = fa::goodbye;
-        Functional f1 = a -> "Goodbye," + a;
+        Functional f1 = a -> "Goodbyes," + a;
         FunctionalNoAnn fnal = a -> "Goodbye," + a;
         System.out.println(f1.goodbye("a"));
     }

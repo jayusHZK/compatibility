@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 /**
  * @author : h zk
  * @date : 2023/3/14 11:46
- * @description : 判断使用，判断方式写在匿名内部类中，有返回值
+ * @description : 判断使用，判断方式写在匿名内部类中，有返回值  一般用来做判断 代替if/else
  **/
 public class predicateTest {
 
