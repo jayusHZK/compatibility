@@ -1,6 +1,10 @@
 package com.jayus.smallMyBatis.step10.reflection.wrapper;
 
+import com.jayus.smallMyBatis.step10.reflection.MetaObject;
+import com.jayus.smallMyBatis.step10.reflection.factory.ObjectFactory;
 import com.jayus.smallMyBatis.step10.reflection.property.PropertyTokenizer;
+
+import java.util.List;
 
 /**
  * 对象包装器
@@ -25,5 +29,15 @@ public interface ObjectWrapper {
 
     boolean hasGetter(String name);
 
-    metaobj
+    // 实例化属性
+    MetaObject instantiatePropertyValue(String name, PropertyTokenizer prop, ObjectFactory objectFactory);
+
+    // 是否是集合
+    boolean isCollection();
+
+    // 添加属性
+    void add(Object element);
+
+    // 添加属性
+    <E> void addAll(List<E> element);
 }

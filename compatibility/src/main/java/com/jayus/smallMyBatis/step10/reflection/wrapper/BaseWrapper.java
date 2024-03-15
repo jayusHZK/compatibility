@@ -29,7 +29,7 @@ public abstract class BaseWrapper implements ObjectWrapper {
         if ("".equals(prop.getName())){
             return object;
         } else {
-            return metaObject.get
+            return metaObject.getValue(prop.getName());
         }
     }
 
