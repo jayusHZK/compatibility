@@ -3,9 +3,7 @@ package com.jayus.smallMyBatis.step10.reflection;
 
 import com.jayus.smallMyBatis.step10.reflection.factory.ObjectFactory;
 import com.jayus.smallMyBatis.step10.reflection.property.PropertyTokenizer;
-import com.jayus.smallMyBatis.step10.reflection.wrapper.MapWrapper;
-import com.jayus.smallMyBatis.step10.reflection.wrapper.ObjectWrapper;
-import com.jayus.smallMyBatis.step10.reflection.wrapper.ObjectWrapperFactory;
+import com.jayus.smallMyBatis.step10.reflection.wrapper.*;
 
 import java.util.Collection;
 import java.util.List;
