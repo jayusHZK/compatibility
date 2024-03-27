@@ -32,7 +32,7 @@ public class Resources {
         };
     }
 
-    public static Class<?> classForNameeee(String className) throws ClassNotFoundException {
+    public static Class<?> classForName(String className) throws ClassNotFoundException {
         return Class.forName(className);
     }
 
