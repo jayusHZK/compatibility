@@ -3,6 +3,7 @@ package com.jayus.smallMyBatis.step10.biulder;
 import com.jayus.smallMyBatis.step10.mapping.ParameterMapping;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.parsing.TokenHandler;
+import com.jayus.smallMyBatis.step10.reflection.MetaClass;
 import com.jayus.smallMyBatis.step10.reflection.MetaObject;
 import com.jayus.smallMyBatis.step10.session.Configuration;
 import org.slf4j.Logger;
@@ -49,8 +50,8 @@ public class SqlSourceBuilder extends BaseBuilder{
 
         @Override
         public String handleToken(String content) {
-            parameterMappings.add()
-            return null;
+            parameterMappings.add(buildParameterMapping(content))
+            return "?";
         }
 
         private ParameterMapping buildParameterMapping(String content) {
@@ -58,7 +59,21 @@ public class SqlSourceBuilder extends BaseBuilder{
             Map<String,String> propertiesMap = new ParameterExpression(content);
             String property = propertiesMap.get("property");
             Class<?> propertyType;
-            if (typeHandlerRegistry.hast)
+            if (typeHandlerRegistry.hasTypeHandler(parameterType)){
+                propertyType = parameterType;
+            } else if (propertiesMap != null) {
+                MetaClass metaClass = MetaClass.forClass(parameterType);
+                if (metaClass.hasGetter(property)) {
+                    propertyType = metaClass.getGetterType(property);
+                } else {
+                    propertyType = Object.class;
+                }
+            } else {
+                propertyType = Object.class;
+            }
+            logger.info("构建参数映射 property：{} propertyType：{}", property, propertyType);
+            ParameterMapping.Builder builder = new ParameterMapping.Builder(configuration, property, propertyType);
+            return builder.build();
         }
     }
 
