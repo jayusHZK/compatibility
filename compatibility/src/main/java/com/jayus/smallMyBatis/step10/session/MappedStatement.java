@@ -1,6 +1,8 @@
 package com.jayus.smallMyBatis.step10.session;
 
 import com.jayus.smallMyBatis.step10.mapping.SqlCommandType;
+import com.jayus.smallMyBatis.step10.mapping.SqlSource;
+import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
 
 /**
  * 映射语句类
@@ -13,6 +15,57 @@ public class MappedStatement {
 
     private SqlCommandType sqlCommandType;
 
-    private sqlsource
+    private SqlSource sqlSource;
 
+    Class<?> resultType;
+
+    private LanguageDriver lang;
+
+    public MappedStatement() {
+
+    }
+
+    public static class Builder {
+        private MappedStatement mappedStatement = new MappedStatement();
+
+        public Builder(Configuration configuration, String id,
+                       SqlCommandType sqlCommandType, SqlSource sqlSource, Class<?> resultType) {
+            mappedStatement.configuration = configuration;
+            mappedStatement.id = id;
+            mappedStatement.sqlCommandType = sqlCommandType;
+            mappedStatement.sqlSource = sqlSource;
+            mappedStatement.resultType = resultType;
+            mappedStatement.lang = configuration.getDefaultScriptingLanguageInstance();
+        }
+
+        public MappedStatement build(){
+            assert mappedStatement.configuration != null;
+            assert mappedStatement.id != null;
+            return mappedStatement;
+        }
+    }
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public SqlCommandType getSqlCommandType() {
+        return sqlCommandType;
+    }
+
+    public SqlSource getSqlSource() {
+        return sqlSource;
+    }
+
+    public Class<?> getResultType() {
+        return resultType;
+    }
+
+    public LanguageDriver getLang() {
+        return lang;
+    }
 }

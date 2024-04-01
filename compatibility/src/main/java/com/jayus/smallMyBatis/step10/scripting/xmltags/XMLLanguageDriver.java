@@ -4,6 +4,7 @@ import com.jayus.smallMyBatis.step10.executor.parameter.ParameterHandler;
 import com.jayus.smallMyBatis.step10.mapping.BoundSql;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
+import com.jayus.smallMyBatis.step10.scripting.defaults.DefaultParameterHandler;
 import com.jayus.smallMyBatis.step10.session.Configuration;
 import com.jayus.smallMyBatis.step10.session.MappedStatement;
 import org.dom4j.Element;
@@ -15,12 +16,12 @@ public class XMLLanguageDriver implements LanguageDriver {
 
     @Override
     public SqlSource createSqlSource(Configuration configuration, Element script, Class<?> parameterType) {
-        new xml
-        return null;
+        XMLScriptBuilder builder = new XMLScriptBuilder(configuration, script, parameterType);
+        return builder.parseScriptNode();
     }
 
     @Override
     public ParameterHandler createParameterhandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
-        return null;
+        return new DefaultParameterHandler(mappedStatement,parameterObject,boundSql);
     }
 }

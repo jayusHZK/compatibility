@@ -2,6 +2,7 @@ package com.jayus.smallMyBatis.step10.biulder;
 
 import com.jayus.smallMyBatis.step10.mapping.ParameterMapping;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
+import com.jayus.smallMyBatis.step10.parsing.GenericTokenParser;
 import com.jayus.smallMyBatis.step10.parsing.TokenHandler;
 import com.jayus.smallMyBatis.step10.reflection.MetaClass;
 import com.jayus.smallMyBatis.step10.reflection.MetaObject;
@@ -27,7 +28,11 @@ public class SqlSourceBuilder extends BaseBuilder{
     }
 
     public SqlSource parse(String originSql, Class<?> parameterType, Map<String,Object> additionalParameters) {
-        new
+        ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler(
+                configuration, parameterType, additionalParameters);
+        GenericTokenParser parser = new GenericTokenParser("#{", "}", handler);
+        String sql = parser.parse(originSql);
+        return new StaticSqlSource(configuration,sql,handler.getParameterMappings());
     }
 
     private static class ParameterMappingTokenHandler extends BaseBuilder implements TokenHandler {

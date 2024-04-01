@@ -12,6 +12,7 @@ import com.jayus.smallMyBatis.step10.reflection.factory.DefaultObjectFactory;
 import com.jayus.smallMyBatis.step10.reflection.factory.ObjectFactory;
 import com.jayus.smallMyBatis.step10.reflection.wrapper.DefaultObjectWrapperFactory;
 import com.jayus.smallMyBatis.step10.reflection.wrapper.ObjectWrapperFactory;
+import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
 import com.jayus.smallMyBatis.step10.scripting.LanguageDriverRegistry;
 import com.jayus.smallMyBatis.step10.scripting.xmltags.XMLLanguageDriver;
 import com.jayus.smallMyBatis.step10.transaction.jdbc.JdbcTransaction;
@@ -40,7 +41,7 @@ public class Configuration {
     // 类型别名注册机
     protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
 
-    protected final LanguageDriverRegistry languageDriverRegistry = new LanguageDriverRegistry();
+    protected final LanguageDriverRegistry languageRegistry = new LanguageDriverRegistry();
 
     // 类型处理器注册机
     protected final TypeHandlerRegistry typeHandlerRegistry = new TypeHandlerRegistry();
@@ -59,7 +60,7 @@ public class Configuration {
         typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
         typeAliasRegistry.registerAlias("UNPOOLED", UnpooledDataSourceFactory.class);
         typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
-        languageDriverRegistry.setDefaultDriverClass(XMLLanguageDriver.class);
+        languageRegistry.setDefaultDriverClass(XMLLanguageDriver.class);
     }
 
     public void addMappers(String packageName){
@@ -80,5 +81,10 @@ public class Configuration {
 
     public TypeHandlerRegistry getTypeHandlerRegistry() {
         return typeHandlerRegistry;
+    }
+
+
+    public LanguageDriver getDefaultScriptingLanguageInstance() {
+        return languageRegistry.getDefaultDriver();
     }
 }

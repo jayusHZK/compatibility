@@ -2,6 +2,7 @@ package com.jayus.smallMyBatis.step10.scripting.xmltags;
 
 import com.jayus.smallMyBatis.step10.biulder.BaseBuilder;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
+import com.jayus.smallMyBatis.step10.scripting.defaults.RawSqlSource;
 import com.jayus.smallMyBatis.step10.session.Configuration;
 import org.dom4j.Element;
 
@@ -19,7 +20,7 @@ public class XMLScriptBuilder extends BaseBuilder {
 
     private Class<?> parameterType;
 
-    public XMLScriptBuilder(Configuration configuration, Element element, boolean isDynamic, Class<?> parameterType) {
+    public XMLScriptBuilder(Configuration configuration, Element element, Class<?> parameterType) {
         super(configuration);
         this.element = element;
         this.parameterType = parameterType;
@@ -28,7 +29,7 @@ public class XMLScriptBuilder extends BaseBuilder {
     public SqlSource parseScriptNode(){
         List<SqlNode> contents = parseDynamicTags(element);
         MixedSqlNode rootSqlNode = new MixedSqlNode(contents);
-        return new raw
+        return new RawSqlSource(configuration,rootSqlNode,parameterType);
     }
 
     List<SqlNode> parseDynamicTags(Element element){

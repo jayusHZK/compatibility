@@ -20,13 +20,37 @@ public class BoundSql {
 
     private Map<String,Object> additionalParameters;
 
-    private MetaObject metaObject;
+    private MetaObject metaParameter;
 
     public BoundSql(Configuration configuration,String sql, List<ParameterMapping> parameterMappings, Object parameterObject) {
         this.sql = sql;
         this.parameterMappings = parameterMappings;
         this.parameterObject = parameterObject;
         this.additionalParameters = new HashMap<>();
-        this.metaObject = configuration.n;
+        this.metaParameter = configuration.newMetaObject(additionalParameters);
+    }
+
+    public String getSql() {
+        return sql;
+    }
+
+    public List<ParameterMapping> getParameterMappings() {
+        return parameterMappings;
+    }
+
+    public Object getParameterObject() {
+        return parameterObject;
+    }
+
+    public boolean hasAdditionalParameter(String name) {
+        return metaParameter.hasGetter(name);
+    }
+
+    public void setAdditionalParameters(String name,Object value){
+        metaParameter.setValue(name,value);
+    }
+
+    public Object getAdditionalParameter(String name){
+        return metaParameter.getValue(name);
     }
 }
