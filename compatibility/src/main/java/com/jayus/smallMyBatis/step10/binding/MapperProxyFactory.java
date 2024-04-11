@@ -3,6 +3,7 @@ package com.jayus.smallMyBatis.step10.binding;
 import com.jayus.smallMyBatis.step10.session.SqlSession;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,6 +25,7 @@ public class MapperProxyFactory<T>{
     }
 
     public T newInstance(SqlSession sqlSession){
-        final mapperproxy
+        final MapperProxy<T> mapperProxy = new MapperProxy<>(sqlSession, mapperInterface, methodCache);
+        return (T) Proxy.newProxyInstance(mapperInterface.getClassLoader(),new Class[]{mapperInterface},mapperProxy );
     }
 }

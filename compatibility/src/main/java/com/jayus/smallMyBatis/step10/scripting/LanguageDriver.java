@@ -2,9 +2,9 @@ package com.jayus.smallMyBatis.step10.scripting;
 
 import com.jayus.smallMyBatis.step10.executor.parameter.ParameterHandler;
 import com.jayus.smallMyBatis.step10.mapping.BoundSql;
+import com.jayus.smallMyBatis.step10.mapping.MappedStatement;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.session.Configuration;
-import com.jayus.smallMyBatis.step10.session.MappedStatement;
 import org.dom4j.Element;
 
 /**
@@ -20,6 +20,6 @@ public interface LanguageDriver {
     /**
      * 创建参数处理器
      */
-    ParameterHandler createParameterhandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
+    ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
 
 }

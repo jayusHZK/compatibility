@@ -1,4 +1,4 @@
-package com.jayus.smallMyBatis.step10.biulder;
+package com.jayus.smallMyBatis.step10.builder;
 
 import java.util.HashMap;
 
@@ -10,14 +10,16 @@ public class ParameterExpression extends HashMap<String, String> {
     private static final long serialVersionUID = -2417552199605158680L;
 
     public ParameterExpression(String expression) {
-        super(initialCapacity, loadFactor);
+       parse(expression);
     }
 
     private void parse(String expression) {
         // 首先去除空白 返回的 p 是第一个不是空白字符的字符位置
         int p = skipWS(expression, 0);
         if (expression.charAt(p) == '(') {
-            exp
+            expression(expression,p+1);
+        } else {
+            property(expression,p);
         }
     }
 

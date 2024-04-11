@@ -1,6 +1,6 @@
 package com.jayus.smallMyBatis.step10.scripting.xmltags;
 
-import com.jayus.smallMyBatis.step10.biulder.BaseBuilder;
+import com.jayus.smallMyBatis.step10.builder.BaseBuilder;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.scripting.defaults.RawSqlSource;
 import com.jayus.smallMyBatis.step10.session.Configuration;

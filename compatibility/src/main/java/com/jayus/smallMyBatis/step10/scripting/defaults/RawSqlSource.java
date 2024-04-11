@@ -1,6 +1,6 @@
 package com.jayus.smallMyBatis.step10.scripting.defaults;
 
-import com.jayus.smallMyBatis.step10.biulder.SqlSourceBuilder;
+import com.jayus.smallMyBatis.step10.builder.SqlSourceBuilder;
 import com.jayus.smallMyBatis.step10.mapping.BoundSql;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.scripting.xmltags.DynamicContext;

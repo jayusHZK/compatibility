@@ -1,4 +1,4 @@
-package com.jayus.smallMyBatis.step10.biulder;
+package com.jayus.smallMyBatis.step10.builder;
 
 import com.jayus.smallMyBatis.step10.mapping.BoundSql;
 import com.jayus.smallMyBatis.step10.mapping.ParameterMapping;

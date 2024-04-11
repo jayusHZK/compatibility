@@ -1,8 +1,7 @@
-package com.jayus.smallMyBatis.step10.session;
+package com.jayus.smallMyBatis.step10.mapping;
 
-import com.jayus.smallMyBatis.step10.mapping.SqlCommandType;
-import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
+import com.jayus.smallMyBatis.step10.session.Configuration;
 
 /**
  * 映射语句类
@@ -28,8 +27,8 @@ public class MappedStatement {
     public static class Builder {
         private MappedStatement mappedStatement = new MappedStatement();
 
-        public Builder(Configuration configuration, String id,
-                       SqlCommandType sqlCommandType, SqlSource sqlSource, Class<?> resultType) {
+        public Builder(Configuration configuration,String id, SqlCommandType sqlCommandType,
+                       SqlSource sqlSource,Class<?> resultType) {
             mappedStatement.configuration = configuration;
             mappedStatement.id = id;
             mappedStatement.sqlCommandType = sqlCommandType;

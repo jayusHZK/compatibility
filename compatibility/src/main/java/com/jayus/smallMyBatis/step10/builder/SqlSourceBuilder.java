@@ -1,4 +1,4 @@
-package com.jayus.smallMyBatis.step10.biulder;
+package com.jayus.smallMyBatis.step10.builder;
 
 import com.jayus.smallMyBatis.step10.mapping.ParameterMapping;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
@@ -55,7 +55,7 @@ public class SqlSourceBuilder extends BaseBuilder{
 
         @Override
         public String handleToken(String content) {
-            parameterMappings.add(buildParameterMapping(content))
+            parameterMappings.add(buildParameterMapping(content));
             return "?";
         }
 

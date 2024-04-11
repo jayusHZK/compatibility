@@ -26,7 +26,7 @@ public class LanguageDriverRegistry {
                 driver = (LanguageDriver) cls.newInstance();
                 LANGUAGE_DRIVER_MAP.put(cls,driver);
             } catch (Exception e) {
-                throw new RuntimeException("Failed to load language driver for " + cls.getName(), ex);
+                throw new RuntimeException("Failed to load language driver for " + cls.getName(), e);
             }
         }
     }

@@ -2,11 +2,11 @@ package com.jayus.smallMyBatis.step10.scripting.xmltags;
 
 import com.jayus.smallMyBatis.step10.executor.parameter.ParameterHandler;
 import com.jayus.smallMyBatis.step10.mapping.BoundSql;
+import com.jayus.smallMyBatis.step10.mapping.MappedStatement;
 import com.jayus.smallMyBatis.step10.mapping.SqlSource;
 import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
 import com.jayus.smallMyBatis.step10.scripting.defaults.DefaultParameterHandler;
 import com.jayus.smallMyBatis.step10.session.Configuration;
-import com.jayus.smallMyBatis.step10.session.MappedStatement;
 import org.dom4j.Element;
 
 /**
@@ -21,7 +21,8 @@ public class XMLLanguageDriver implements LanguageDriver {
     }
 
     @Override
-    public ParameterHandler createParameterhandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
+    public ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql) {
         return new DefaultParameterHandler(mappedStatement,parameterObject,boundSql);
     }
+
 }

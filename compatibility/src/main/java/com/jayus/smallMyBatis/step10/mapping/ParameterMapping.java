@@ -3,6 +3,7 @@ package com.jayus.smallMyBatis.step10.mapping;
 import com.jayus.smallMyBatis.step10.session.Configuration;
 import com.jayus.smallMyBatis.step10.type.JdbcType;
 import com.jayus.smallMyBatis.step10.type.TypeHandler;
+import com.jayus.smallMyBatis.step10.type.TypeHandlerRegistry;
 
 /**
  * 参数映射 #{property,javatype=int,jdbcType=NUMEPIC}
@@ -46,8 +47,10 @@ public class ParameterMapping {
         public ParameterMapping build(){
             if (parameterMapping.typeHandler == null && parameterMapping.javaType != null){
                 Configuration configuration = parameterMapping.getConfiguration();
-                configuration.get
+                TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
+                parameterMapping.typeHandler = typeHandlerRegistry.getTypeHandler(parameterMapping.javaType,parameterMapping.jdbcType);
             }
+            return parameterMapping;
         }
     }
 

@@ -172,7 +172,7 @@ public class BeanWrapper extends BaseWrapper {
             Invoker method = metaClass.getSetInvokere(prop.getName());
             Object[] params = {value};
             method.invoke(object, params);
-        } catch (Exception e) {
+        } catch (Throwable t) {
             throw new RuntimeException("Could not set property '" + prop.getName() + "' of '" + object.getClass() + "' with value '" + value + "' Cause: " + t.toString(), t);
         }
     }
