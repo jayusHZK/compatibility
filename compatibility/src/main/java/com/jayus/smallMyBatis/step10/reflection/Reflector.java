@@ -47,7 +47,16 @@ public class Reflector {
         addDefaultConstructor(clazz);
         addGetMethods(clazz);
         addSetMethods(clazz);
-        //addf
+        // 加入字段
+        addFields(clazz);
+        readablePropertyNames = getMethods.keySet().toArray(new String[getMethods.keySet().size()]);
+        writeablePropertyNames = setMethods.keySet().toArray(new String[setMethods.keySet().size()]);
+        for (String propName : readablePropertyNames) {
+            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
+        }
+        for (String propName : writeablePropertyNames) {
+            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
+        }
     }
 
     private void addDefaultConstructor(Class<?> clazz) {
@@ -100,8 +109,93 @@ public class Reflector {
                 }
             }
         }
-        resolveGetterConflicts(conflictingSetters);
+        resolveSetterConflicts(conflictingSetters);
     }
+
+    private void resolveSetterConflicts(Map<String, List<Method>> conflictingSetters) {
+        for (String propName : conflictingSetters.keySet()) {
+            List<Method> setters = conflictingSetters.get(propName);
+            Method firstMethod = setters.get(0);
+            if (setters.size() == 1) {
+                addSetMethod(propName, firstMethod);
+            } else {
+                Class<?> expectedType = getTypes.get(propName);
+                if (expectedType == null) {
+                    throw new RuntimeException("Illegal overloaded setter method with ambiguous type for property "
+                            + propName + " in class " + firstMethod.getDeclaringClass() + ".  This breaks the JavaBeans " +
+                            "specification and can cause unpredicatble results.");
+                } else {
+                    Iterator<Method> methods = setters.iterator();
+                    Method setter = null;
+                    while (methods.hasNext()) {
+                        Method method = methods.next();
+                        if (method.getParameterTypes().length == 1
+                                && expectedType.equals(method.getParameterTypes()[0])) {
+                            setter = method;
+                            break;
+                        }
+                    }
+                    if (setter == null) {
+                        throw new RuntimeException("Illegal overloaded setter method with ambiguous type for property "
+                                + propName + " in class " + firstMethod.getDeclaringClass() + ".  This breaks the JavaBeans " +
+                                "specification and can cause unpredicatble results.");
+                    }
+                    addSetMethod(propName,setter);
+                }
+            }
+        }
+    }
+
+    private void addSetMethod(String name, Method method) {
+        if (isValidPropertyName(name)) {
+            setMethods.put(name, new MethodInvolker(method));
+            setTypes.put(name, method.getParameterTypes()[0]);
+        }
+    }
+
+    private void addFields(Class<?> clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            if (canAccessPrivateMethods()) {
+                try {
+                    field.setAccessible(true);
+                } catch (SecurityException e) {
+
+                }
+            }
+            if (field.isAccessible()) {
+                if (!setMethods.containsKey(field.getName())) {
+                    int modifiers = field.getModifiers();
+                    if (!(Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers))) {
+                        addSetField(field);
+                    }
+                }
+                if (!getMethods.containsKey(field.getName())) {
+                    addGetField(field);
+                }
+            }
+        }
+        if (clazz.getSuperclass() != null) {
+            addFields(clazz.getSuperclass());
+        }
+    }
+
+    private void addSetField(Field field) {
+        if (isValidPropertyName(field.getName())) {
+            setMethods.put(field.getName(), new SetFieldInvoker(field));
+            setTypes.put(field.getName(), field.getType());
+        }
+    }
+
+
+
+    private void addGetField(Field field) {
+        if (isValidPropertyName(field.getName())) {
+            getMethods.put(field.getName(), new GetFieldInvoker(field));
+            getTypes.put(field.getName(), field.getType());
+        }
+    }
+
 
     private void resolveGetterConflicts(Map<String, List<Method>> conflictingGetters) {
         for (String propName : conflictingGetters.keySet()) {
@@ -143,46 +237,6 @@ public class Reflector {
         }
     }
 
-    private void addFields(Class<?> clazz) {
-        Field[] fields = clazz.getDeclaredFields();
-        for (Field field : fields) {
-            if (canAccessPrivateMethods()) {
-                try {
-                    field.setAccessible(true);
-                } catch (SecurityException e) {
-
-                }
-            }
-            if (field.isAccessible()) {
-                if (!setMethods.containsKey(field.getName())) {
-                    int modifiers = field.getModifiers();
-                    if (!(Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers))) {
-                        addSetField(field);
-                    }
-                }
-                if (!getMethods.containsKey(field.getName())) {
-                    addGetField(field);
-                }
-            }
-        }
-        if (clazz.getSuperclass() != null) {
-            addFields(clazz.getSuperclass());
-        }
-    }
-
-    private void addSetField(Field field) {
-        if (isValidPropertyName(field.getName())) {
-            setMethods.put(field.getName(), new SetFieldInvoker(field));
-            setTypes.put(field.getName(), field.getType());
-        }
-    }
-
-    private void addGetField(Field field) {
-        if (isValidPropertyName(field.getName())) {
-            getMethods.put(field.getName(), new GetFieldInvoker(field));
-            getTypes.put(field.getName(), field.getType());
-        }
-    }
 
     private boolean isValidPropertyName(String name) {
         return !(name.startsWith("$") || "serialVersionUID".equals(name) || "class".equals(name));
@@ -272,11 +326,11 @@ public class Reflector {
         }
     }
 
-    public boolean hasDefaultConstructor(){
+    public boolean hasDefaultConstructor() {
         return defaultConstructor != null;
     }
 
-    public Class<?> getSetterType(String propertyName){
+    public Class<?> getSetterType(String propertyName) {
         Class<?> clazz = setTypes.get(propertyName);
         if (clazz == null) {
             throw new RuntimeException("There is no setter for property named '" + propertyName + "' in '" + type + "'");
@@ -284,7 +338,7 @@ public class Reflector {
         return clazz;
     }
 
-    public Invoker getGetInvoker(String propertyName){
+    public Invoker getGetInvoker(String propertyName) {
         Invoker method = getMethods.get(propertyName);
         if (method == null) {
             throw new RuntimeException("There is no getter for property named '" + propertyName + "' in '" + type + "'");
@@ -292,7 +346,7 @@ public class Reflector {
         return method;
     }
 
-    public Invoker getSetInvoker(String propertyName){
+    public Invoker getSetInvoker(String propertyName) {
         Invoker method = setMethods.get(propertyName);
         if (method == null) {
             throw new RuntimeException("There is no getter for property named '" + propertyName + "' in '" + type + "'");
@@ -300,7 +354,7 @@ public class Reflector {
         return method;
     }
 
-    public Class<?> getGetterType(String propertyName){
+    public Class<?> getGetterType(String propertyName) {
         Class<?> clazz = getTypes.get(propertyName);
         if (clazz == null) {
             throw new RuntimeException("There is no getter for property named '" + propertyName + "' in '" + type + "'");
@@ -308,38 +362,39 @@ public class Reflector {
         return clazz;
     }
 
-    public String[] getGetablePropertyNames(){
+    public String[] getGetablePropertyNames() {
         return readablePropertyNames;
     }
 
-    public String[] getSetablePropertyNames(){
+    public String[] getSetablePropertyNames() {
         return writeablePropertyNames;
     }
 
-    public boolean hasSetter(String propertyName){
+    public boolean hasSetter(String propertyName) {
         return setMethods.keySet().contains(propertyName);
     }
 
-    public boolean hasGetter(String propertyName){
+    public boolean hasGetter(String propertyName) {
         return getMethods.keySet().contains(propertyName);
     }
 
-    public String findPropertyName(String name){
+    public String findPropertyName(String name) {
         return caseInsensitivePropertyMap.get(name.toUpperCase(Locale.ENGLISH));
     }
 
     /**
      * 得到某个类的反射器 是静态方法 而且要缓存 又要多线程 所以 REFLECTOR_MAP是一个ConcurrentHashMap
+     *
      * @param clazz
      * @return
      */
-    public static Reflector forClass(Class<?> clazz){
-        if (classCacheEnabled){
+    public static Reflector forClass(Class<?> clazz) {
+        if (classCacheEnabled) {
             // 对于每个类来说 我们假设它是不会变的 这样可以考虑将这个类的信息(构造函数 getter setter 字段) 加入缓存 以提高速度
             Reflector cached = REFLECTOR_MAP.get(clazz);
-            if (cached == null){
+            if (cached == null) {
                 cached = new Reflector(clazz);
-                REFLECTOR_MAP.put(clazz,cached);
+                REFLECTOR_MAP.put(clazz, cached);
             }
             return cached;
         } else {
@@ -351,7 +406,7 @@ public class Reflector {
         Reflector.classCacheEnabled = classCacheEnabled;
     }
 
-    public static boolean isClassCacheEnabled(){
+    public static boolean isClassCacheEnabled() {
         return classCacheEnabled;
     }
 }

@@ -31,7 +31,7 @@ public class SimpleExecutor extends BaseExecutor {
             return handler.query(stmt,resultHandler);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

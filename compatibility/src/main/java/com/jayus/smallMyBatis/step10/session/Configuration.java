@@ -2,9 +2,7 @@ package com.jayus.smallMyBatis.step10.session;
 
 import com.jayus.smallMyBatis.step10.binding.MapperRegistry;
 import com.jayus.smallMyBatis.step10.datasource.druid.DruidDataSourceFactory;
-import com.jayus.smallMyBatis.step10.datasource.pooled.PooledDataSource;
 import com.jayus.smallMyBatis.step10.datasource.pooled.PooledDataSourceFactory;
-import com.jayus.smallMyBatis.step10.datasource.unpool.UnpooledDataSource;
 import com.jayus.smallMyBatis.step10.datasource.unpool.UnpooledDataSourceFactory;
 import com.jayus.smallMyBatis.step10.executor.Executor;
 import com.jayus.smallMyBatis.step10.executor.SimpleExecutor;
@@ -25,7 +23,7 @@ import com.jayus.smallMyBatis.step10.scripting.LanguageDriver;
 import com.jayus.smallMyBatis.step10.scripting.LanguageDriverRegistry;
 import com.jayus.smallMyBatis.step10.scripting.xmltags.XMLLanguageDriver;
 import com.jayus.smallMyBatis.step10.transaction.Transaction;
-import com.jayus.smallMyBatis.step10.transaction.jdbc.JdbcTransaction;
+import com.jayus.smallMyBatis.step10.transaction.jdbc.JdbcTransactionFactory;
 import com.jayus.smallMyBatis.step10.type.TypeAliasRegistry;
 import com.jayus.smallMyBatis.step10.type.TypeHandlerRegistry;
 
@@ -66,7 +64,7 @@ public class Configuration {
     protected String databaseId;
 
     public Configuration() {
-        typeAliasRegistry.registerAlias("JDBC", JdbcTransaction.class);
+        typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
         typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
         typeAliasRegistry.registerAlias("UNPOOLED", UnpooledDataSourceFactory.class);
         typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
