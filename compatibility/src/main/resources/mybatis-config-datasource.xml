@@ -8,9 +8,9 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://115.28.211.17:3306/qujia?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8"/>
-                <property name="username" value="yunwei"/>
-                <property name="password" value="yunwei1qaz"/>
+                <property name="url" value="jdbc:mysql://10.34.100.61:3306/qujia?useUnicode=true&amp;useSSL=false&amp;characterEncoding=utf-8&amp;allowPublicKeyRetrieval=true"/>
+                <property name="username" value="saas_dev"/>
+                <property name="password" value="VXc7ox5U"/>
             </dataSource>
         </environment>
     </environments>

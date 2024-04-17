@@ -100,6 +100,7 @@ public class Reflector {
     private void addSetMethods(Class<?> clazz) {
         Map<String, List<Method>> conflictingSetters = new HashMap<>();
         Method[] methods = getClassMethods(clazz);
+        System.out.println("size"+methods.length);
         for (Method method : methods) {
             String name = method.getName();
             if (name.startsWith("set") && name.length() > 3) {
@@ -265,7 +266,7 @@ public class Reflector {
 
     private void addUniqueMethods(Map<String, Method> uniqueMethods, Method[] methods) {
         for (Method currentMethod : methods) {
-            if (currentMethod.isBridge()) {
+            if (!currentMethod.isBridge()) {
                 // 取得签名
                 String signature = getSignature(currentMethod);
                 if (!uniqueMethods.containsKey(signature)) {
