@@ -61,7 +61,7 @@ public class PooledConnection implements InvocationHandler {
         return method.invoke(realConnection,args);
     }
 
-    private int checkConnection() throws SQLException {
+    private void checkConnection() throws SQLException {
         if (!valid){
             throw new SQLException("Error accessing PooledConnection. Connection is invalid.");
         }
