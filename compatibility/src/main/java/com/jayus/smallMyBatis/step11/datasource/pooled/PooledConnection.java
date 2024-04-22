@@ -72,7 +72,7 @@ public class PooledConnection implements InvocationHandler {
     }
 
     public boolean isValid() {
-        return valid && realConnection != null && dataSource.ping
+        return valid && realConnection != null && dataSource.pingConnection(this);
     }
 
     public Connection getRealConnection(){
