@@ -20,7 +20,8 @@ public class ApiTest {
     public static void main(String[] args) throws IOException {
         ApiTest apiTest = new ApiTest();
         apiTest.init();
-        apiTest.test_queryUserInfoById();
+        //apiTest.test_queryUserInfoById();
+        apiTest.test_queryUserInfo();
     }
 
 
@@ -35,5 +36,14 @@ public class ApiTest {
         User user = userDao.queryUserInfoById(1L);
         System.out.println(user);
     }
+
+    public void test_queryUserInfo(){
+        IUserDao userDao = sqlSession.getMapper(IUserDao.class);
+        User user = new User();
+        user.setId(1L);
+        user.setUser_name("admin");
+        System.out.println(userDao.queryUserInfo(user));
+    }
+
 
 }

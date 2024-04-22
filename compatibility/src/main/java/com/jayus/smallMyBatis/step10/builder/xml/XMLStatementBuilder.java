@@ -29,7 +29,7 @@ public class XMLStatementBuilder extends BaseBuilder {
         String id = element.attributeValue("id");
 
         // 参数类型
-        String patameterType = element.attributeValue("patameterType");
+        String patameterType = element.attributeValue("parameterType");
         Class<?> parameterTypeClass = resolveAlias(patameterType);
         // 结果类型
         String resultType = element.attributeValue("resultType");

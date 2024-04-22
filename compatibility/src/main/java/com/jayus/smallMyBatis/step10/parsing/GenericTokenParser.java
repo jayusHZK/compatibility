@@ -27,26 +27,26 @@ public class GenericTokenParser {
             while (start > -1) {
                 if (start > 0 && src[start - 1] == '\\') {
                     // 新版已经没有调用 substring 了，改为调用如下的 offset 方式 提高效率
-                    builder.append(src,offset,start - offset - 1).append(openToken);
+                    builder.append(src, offset, start - offset - 1).append(openToken);
                     offset = start + openToken.length();
                 } else {
-                    int end = text.indexOf(closeToken,start);
-                    if (end == -1){
-                        builder.append(src,offset,src.length - offset);
+                    int end = text.indexOf(closeToken, start);
+                    if (end == -1) {
+                        builder.append(src, offset, src.length - offset);
                         offset = src.length;
                     } else {
-                        builder.append(src,offset,start - offset);
+                        builder.append(src, offset, start - offset);
                         offset = start + openToken.length();
                         String content = new String(src, offset, end - offset);
                         // 得到一对大括号里的字符串后，调用 handler.handleToken 比如替换变量这种功能
                         builder.append(handler.handleToken(content));
-                        offset = end+closeToken.length();
+                        offset = end + closeToken.length();
                     }
                 }
-                start = text.indexOf(openToken,offset);
+                start = text.indexOf(openToken, offset);
             }
-            if (offset < src.length){
-                builder.append(src,offset,src.length - offset);
+            if (offset < src.length) {
+                builder.append(src, offset, src.length - offset);
             }
         }
         return builder.toString();

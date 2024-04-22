@@ -7,8 +7,10 @@ public class User {
 
     private Long id;
 
-    private String userId;
+    private Long user_id;
 
-    private String userName;
+    private String user_name;
+
+    private String sex;
 
 }

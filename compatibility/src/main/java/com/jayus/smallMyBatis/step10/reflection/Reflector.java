@@ -100,7 +100,6 @@ public class Reflector {
     private void addSetMethods(Class<?> clazz) {
         Map<String, List<Method>> conflictingSetters = new HashMap<>();
         Method[] methods = getClassMethods(clazz);
-        System.out.println("size"+methods.length);
         for (Method method : methods) {
             String name = method.getName();
             if (name.startsWith("set") && name.length() > 3) {

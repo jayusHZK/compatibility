@@ -56,7 +56,7 @@ public class DefaultParameterHandler implements ParameterHandler {
                 String propertyName = parameterMapping.getProperty();
                 Object value;
                 if (typeHandlerRegistry.hasTypeHandler(parameterObject.getClass())){
-                    value = parameterMapping;
+                    value = parameterObject;
                 } else {
                     // 通过 MetaObject.getValue 反射取得值设进去
                     MetaObject metaObject = configuration.newMetaObject(parameterObject);
