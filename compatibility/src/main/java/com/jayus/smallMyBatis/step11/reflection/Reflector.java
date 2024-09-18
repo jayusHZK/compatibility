@@ -1,17 +1,19 @@
-package com.jayus.smallMyBatis.step10.reflection;
+package com.jayus.smallMyBatis.step11.reflection;
 
-import com.jayus.smallMyBatis.step10.reflection.invoker.GetFieldInvoker;
-import com.jayus.smallMyBatis.step10.reflection.invoker.Invoker;
-import com.jayus.smallMyBatis.step10.reflection.invoker.MethodInvolker;
-import com.jayus.smallMyBatis.step10.reflection.invoker.SetFieldInvoker;
-import com.jayus.smallMyBatis.step10.reflection.property.PropertyNamer;
+import com.jayus.smallMyBatis.step11.reflection.invoker.GetFieldInvoker;
+import com.jayus.smallMyBatis.step11.reflection.invoker.Invoker;
+import com.jayus.smallMyBatis.step11.reflection.invoker.MethodInvoker;
+import com.jayus.smallMyBatis.step11.reflection.invoker.SetFieldInvoker;
+import com.jayus.smallMyBatis.step11.reflection.property.PropertyNamer;
 
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 反射器 属性 get/set 的映射器
+ * @ClassName Reflector
+ * @Description: 反射器，属性 get/set 的映射器
+ * @date: 2024/5/13 18:13
  */
 public class Reflector {
 
@@ -19,23 +21,29 @@ public class Reflector {
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
-    // 线程安全的缓存
     private static final Map<Class<?>, Reflector> REFLECTOR_MAP = new ConcurrentHashMap<>();
 
     private Class<?> type;
 
+    // get 属性列表
     private String[] readablePropertyNames = EMPTY_STRING_ARRAY;
 
+    // set属性列表
     private String[] writeablePropertyNames = EMPTY_STRING_ARRAY;
 
+    // set 方法列表
     private Map<String, Invoker> setMethods = new HashMap<>();
 
+    // get 方法列表
     private Map<String, Invoker> getMethods = new HashMap<>();
 
+    // set 类型列表
     private Map<String, Class<?>> setTypes = new HashMap<>();
 
+    // get 类型列表
     private Map<String, Class<?>> getTypes = new HashMap<>();
 
+    // 构造函数
     private Constructor<?> defaultConstructor;
 
     private Map<String, String> caseInsensitivePropertyMap = new HashMap<>();
@@ -44,17 +52,19 @@ public class Reflector {
         this.type = clazz;
         // 加入构造函数
         addDefaultConstructor(clazz);
+        // 加入 getter
         addGetMethods(clazz);
+        // 加入 setter
         addSetMethods(clazz);
         // 加入字段
         addFields(clazz);
         readablePropertyNames = getMethods.keySet().toArray(new String[getMethods.keySet().size()]);
         writeablePropertyNames = setMethods.keySet().toArray(new String[setMethods.keySet().size()]);
         for (String propName : readablePropertyNames) {
-            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
+            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH),propName);
         }
         for (String propName : writeablePropertyNames) {
-            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH), propName);
+            caseInsensitivePropertyMap.put(propName.toUpperCase(Locale.ENGLISH),propName);
         }
     }
 
@@ -66,7 +76,7 @@ public class Reflector {
                     try {
                         constructor.setAccessible(true);
                     } catch (SecurityException e) {
-                        //throw new RuntimeException(e);
+
                     }
                 }
                 if (constructor.isAccessible()) {
@@ -128,8 +138,7 @@ public class Reflector {
                     Method setter = null;
                     while (methods.hasNext()) {
                         Method method = methods.next();
-                        if (method.getParameterTypes().length == 1
-                                && expectedType.equals(method.getParameterTypes()[0])) {
+                        if (method.getParameterTypes().length == 1 && expectedType.equals(method.getParameterTypes()[0])) {
                             setter = method;
                             break;
                         }
@@ -139,7 +148,7 @@ public class Reflector {
                                 + propName + " in class " + firstMethod.getDeclaringClass() + ".  This breaks the JavaBeans " +
                                 "specification and can cause unpredicatble results.");
                     }
-                    addSetMethod(propName,setter);
+                    addSetMethod(propName, setter);
                 }
             }
         }
@@ -147,7 +156,7 @@ public class Reflector {
 
     private void addSetMethod(String name, Method method) {
         if (isValidPropertyName(name)) {
-            setMethods.put(name, new MethodInvolker(method));
+            setMethods.put(name, new MethodInvoker(method));
             setTypes.put(name, method.getParameterTypes()[0]);
         }
     }
@@ -186,8 +195,6 @@ public class Reflector {
         }
     }
 
-
-
     private void addGetField(Field field) {
         if (isValidPropertyName(field.getName())) {
             getMethods.put(field.getName(), new GetFieldInvoker(field));
@@ -208,7 +215,7 @@ public class Reflector {
                 Class<?> getterType = firstMethod.getReturnType();
                 while (iterator.hasNext()) {
                     Method method = iterator.next();
-                    Class<?> methodType = firstMethod.getReturnType();
+                    Class<?> methodType = method.getReturnType();
                     if (methodType.equals(getterType)) {
                         throw new RuntimeException("Illegal overloaded getter method with ambiguous type for property "
                                 + propName + " in class " + firstMethod.getDeclaringClass()
@@ -231,11 +238,10 @@ public class Reflector {
 
     private void addGetMethod(String name, Method method) {
         if (isValidPropertyName(name)) {
-            getMethods.put(name, new MethodInvolker(method));
+            getMethods.put(name, new MethodInvoker(method));
             getTypes.put(name, method.getReturnType());
         }
     }
-
 
     private boolean isValidPropertyName(String name) {
         return !(name.startsWith("$") || "serialVersionUID".equals(name) || "class".equals(name));
@@ -247,17 +253,17 @@ public class Reflector {
     }
 
     private Method[] getClassMethods(Class<?> cls) {
-        Map<String, Method> uniqueMethods = new HashMap<>();
+        Map<String, Method> uniqueMethods = new HashMap<String, Method>();
         Class<?> currentClass = cls;
         while (currentClass != null) {
             addUniqueMethods(uniqueMethods, currentClass.getDeclaredMethods());
+
             Class<?>[] interfaces = currentClass.getInterfaces();
             for (Class<?> anInterface : interfaces) {
                 addUniqueMethods(uniqueMethods, anInterface.getMethods());
             }
             currentClass = currentClass.getSuperclass();
         }
-
         Collection<Method> methods = uniqueMethods.values();
         return methods.toArray(new Method[methods.size()]);
     }
@@ -265,14 +271,13 @@ public class Reflector {
     private void addUniqueMethods(Map<String, Method> uniqueMethods, Method[] methods) {
         for (Method currentMethod : methods) {
             if (!currentMethod.isBridge()) {
-                // 取得签名
                 String signature = getSignature(currentMethod);
                 if (!uniqueMethods.containsKey(signature)) {
                     if (canAccessPrivateMethods()) {
                         try {
                             currentMethod.setAccessible(true);
                         } catch (SecurityException e) {
-                            //throw new RuntimeException(e);
+
                         }
                     }
                     uniqueMethods.put(signature, currentMethod);
@@ -285,7 +290,7 @@ public class Reflector {
         StringBuilder sb = new StringBuilder();
         Class<?> returnType = method.getReturnType();
         if (returnType != null) {
-            sb.append(returnType.getName()).append('#');
+            sb.append(returnType.getName()).append("#");
         }
         sb.append(method.getName());
         Class<?>[] parameters = method.getParameterTypes();
@@ -305,9 +310,9 @@ public class Reflector {
         try {
             SecurityManager securityManager = System.getSecurityManager();
             if (null != securityManager) {
-                securityManager.checkPermission(new ReflectPermission("suppressAccessChecks"));
+                securityManager.checkPermission(new ReflectPermission("supperssAccessChecks"));
             }
-        } catch (SecurityException e) {
+        } catch (Exception e) {
             return false;
         }
         return true;
@@ -348,7 +353,7 @@ public class Reflector {
     public Invoker getSetInvoker(String propertyName) {
         Invoker method = setMethods.get(propertyName);
         if (method == null) {
-            throw new RuntimeException("There is no getter for property named '" + propertyName + "' in '" + type + "'");
+            throw new RuntimeException("There is no setter for property named '" + propertyName + "' in '" + type + "'");
         }
         return method;
     }
@@ -381,15 +386,8 @@ public class Reflector {
         return caseInsensitivePropertyMap.get(name.toUpperCase(Locale.ENGLISH));
     }
 
-    /**
-     * 得到某个类的反射器 是静态方法 而且要缓存 又要多线程 所以 REFLECTOR_MAP是一个ConcurrentHashMap
-     *
-     * @param clazz
-     * @return
-     */
     public static Reflector forClass(Class<?> clazz) {
         if (classCacheEnabled) {
-            // 对于每个类来说 我们假设它是不会变的 这样可以考虑将这个类的信息(构造函数 getter setter 字段) 加入缓存 以提高速度
             Reflector cached = REFLECTOR_MAP.get(clazz);
             if (cached == null) {
                 cached = new Reflector(clazz);
