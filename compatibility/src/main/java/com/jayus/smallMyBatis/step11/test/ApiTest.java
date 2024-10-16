@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.function.Supplier;
 
 /**
  * @ClassName ApiTest
@@ -30,9 +31,9 @@ public class ApiTest {
 
     public static void main(String[] args) throws IOException {
         init();
-        //test_queryUserInfoById();
+        test_queryUserInfoById();
         //test_queryUserInfo();
-        cglibProxyTest();
+        //cglibProxyTest();
     }
 
     public static void init() throws IOException {
@@ -49,6 +50,7 @@ public class ApiTest {
     public static void test_queryUserInfo() {
         IUserDao userDao = sqlSession.getMapper(IUserDao.class);
         System.out.println(userDao.queryUserInfo(new User(1L, "superAdmin")));
+        Supplier<String> f = new User(1L, "superAdmin")::getUser_name;
     }
 
     public static void jdkProxyTest() {
@@ -63,7 +65,19 @@ public class ApiTest {
         }
     }
 
-    public static void cglibProxyTest(){
+    public static void jdkProxyTest1() {
+        while (true) {
+            Object o = Proxy.newProxyInstance(IUserDao.class.getClassLoader(), new Class[]{IUserDao.class},
+                    ((ob,m,a) -> {
+                        System.out.println(1);
+                        return 1;
+                    }));
+            System.out.println(o.getClass().getSimpleName());
+        }
+    }
+
+
+    public static void cglibProxyTest() {
         while (true) {
             Enhancer enhancer = new Enhancer();
             enhancer.setSuperclass(User.class);

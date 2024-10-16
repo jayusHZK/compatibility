@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jayus.smallMyBatis.step11.test.dao.IUserDao">
+<mapper namespace="com.jayus.smallMyBatis.step12.test.dao.IUserDao">
 
     <select id="queryUserInfoById" parameterType="java.lang.Long"
-            resultType="com.jayus.smallMyBatis.step11.test.po.User">
+            resultType="com.jayus.smallMyBatis.step12.test.po.User">
         SELECT id, user_name
         FROM sys_user
         where id = #{id}
     </select>
 
-    <select id="queryUserInfo" parameterType="com.jayus.smallMyBatis.step11.test.po.User"
-            resultType="com.jayus.smallMyBatis.step11.test.po.User">
+    <select id="queryUserInfo" parameterType="com.jayus.smallMyBatis.step12.test.po.User"
+            resultType="com.jayus.smallMyBatis.step12.test.po.User">
         SELECT id, user_name
         FROM sys_user
         where id = #{id}
         and user_name = #{user_name}
     </select>
+
+    <select id="queryUserInfoList" resultType="com.jayus.smallMyBatis.step12.test.po.User">
+        select id,user_name from sys_user;
+    </select>
+
+    <insert id="insert" parameterType="com.jayus.smallMyBatis.step11.test.po.User">
+        insert into sys_user(user_name) values (#{user_name})
+    </insert>
+
+    <update id="update" parameterType="com.jayus.smallMyBatis.step11.test.po.User">
+        update sys_user set user_name = #{user_name} where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from sys_user where id = #{id}
+    </delete>
 
 </mapper>
