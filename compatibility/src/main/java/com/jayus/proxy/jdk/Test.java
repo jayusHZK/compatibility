@@ -18,7 +18,7 @@ public class Test {
                 return invoke;
             }
         });
-        docker.doWhat();
+        docker.doWhat("治病救人");
     }
 
 }

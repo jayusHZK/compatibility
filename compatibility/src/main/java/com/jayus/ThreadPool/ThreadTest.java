@@ -7,8 +7,11 @@ package com.jayus.ThreadPool;
  **/
 public class ThreadTest {
     public static void main(String[] args) {
-        new Thread(() ->{
-
+        Thread.setDefaultUncaughtExceptionHandler((t,e) -> {
+            System.out.println("Thread " + t.getName() + " trigger Error Cause: " + e);
         });
+        new Thread(() ->{
+            int i = 1/0;
+        }).run();
     }
 }

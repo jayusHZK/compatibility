@@ -3,6 +3,20 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+    <plugins>
+        <plugin interceptor="com.jayus.smallMyBatis.step19.test.plugin.TestPlugin">
+            <property name="test00" value="100"/>
+            <property name="test01" value="200"/>
+        </plugin>
+    </plugins>
+
+    <settings>
+        <!-- 全局缓存：true/false -->
+        <setting name="cacheEnabled" value="true"/>
+        <!--缓存级别：SESSION/STATEMENT-->
+        <setting name="localCacheScope" value="STATEMENT"/>
+    </settings>
+
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -17,8 +31,8 @@
     </environments>
 
     <mappers>
-        <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <mapper class="com.jayus.smallMyBatis.step13.test.dao.IUserDao"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <!--<mapper resource="com.jayus.smallMyBatis.step19.test.dao.IUserDao"/>-->
     </mappers>
 
 </configuration>

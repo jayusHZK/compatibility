@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class User {
 
     public User(String user_name) {
-        this.user_name = user_name;
+        this.username = user_name;
     }
 
     private Long id;
 
-    private String user_name;
+    private String username;
 
 }

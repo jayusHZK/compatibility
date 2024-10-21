@@ -78,7 +78,6 @@ public class OomTest {
                         return 1;
                     }));
             System.out.println(o.getClass().getSimpleName());
-            System.out.println(o.getClass().getSimpleName());
         }
     }
 
