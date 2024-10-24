@@ -1,0 +1,50 @@
+ConverterGroovyClassLoader loader = new ConverterGroovyClassLoader();
+
+private void refreshGroovyTemplate(){
+        try {
+            List<TopProjectShell> list = iTopConverterShellService.getConvertShell();
+            if (null != list && list.size() > 0){
+                list.stream().forEach(topProjectShell -> {
+                    Integer update = converterUptTime.get(topProjectShell.getClassName());
+                    //更新时间有变动即更新
+                    if (null != update && update.intValue() != topProjectShell.getUpdateAt().intValue()){
+                        try {
+                            Class<?> groovyClass = loader.loadClass(CLASSPATH + topProjectShell.getClassName());
+                            IConverter converter = (IConverter) groovyClass.newInstance();
+                            converter = null;
+                            groovyClass = null;
+                            //todo 不知道在高并发状态中会不会报noclassnotfind异常
+                            System.gc();
+                            //重载convert类
+                            try {
+                                loader.loadConverterClass(topProjectShell.getClassName(),topProjectShell.getTemplate());
+                                Class<?> newGroovyClass = loader.loadClass(CLASSPATH + topProjectShell.getClassName());
+                                IConverter newConverter = (IConverter) newGroovyClass.newInstance();
+                                IconvertMap.put(topProjectShell.getProjectDomain(),newConverter);
+                                converterUptTime.put(topProjectShell.getClassName(),topProjectShell.getUpdateAt());
+                            }catch (Exception e){
+                                log.warn("load new groovy class error:", e);
+                            }
+                        } catch (Exception e) {
+                            log.warn("GC groovy class error:", e);
+                        }
+                    }
+                        //更新时间初始0的代表有新增模板
+                        if (null == update || update.intValue() == 0){
+                            try {
+                                loader.loadConverterClass(topProjectShell.getClassName(),topProjectShell.getTemplate());
+                                Class<?> newGroovyClass = loader.loadClass(CLASSPATH + topProjectShell.getClassName());
+                                IConverter newConverter = (IConverter) newGroovyClass.newInstance();
+                                IconvertMap.put(topProjectShell.getProjectDomain(),newConverter);
+                                converterUptTime.put(topProjectShell.getClassName(),topProjectShell.getUpdateAt());
+                            }catch (Exception e){
+                                log.warn("load new groovy class error:", e);
+                            }
+                        }
+                    domain2pkgageMap.put(topProjectShell.getProjectPackage(),topProjectShell.getProjectDomain());
+                });
+            }
+        }catch (Exception e){
+            log.warn("更新groovy模板失败:", e);
+        }
+    }

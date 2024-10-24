@@ -1,4 +1,3 @@
-package com.jayus.groovy
 
 class testMain {
 
@@ -9,6 +8,10 @@ class testMain {
     private static List test(List list){
         list.add(1);
         return list;
+    }
+
+    byte[] decode(byte[] bytes){
+        return Base64.decoder.decode(bytes)
     }
 
 }

@@ -11,7 +11,14 @@ public class ThreadTest {
             System.out.println("Thread " + t.getName() + " trigger Error Cause: " + e);
         });
         new Thread(() ->{
+            System.out.println(Thread.currentThread().getName());
             int i = 1/0;
-        }).run();
+        }).start();
+
+        new Thread(() ->{
+            System.out.println(Thread.currentThread().getName());
+            int i = 1/0;
+        }).start();
+        while (true){}
     }
 }
