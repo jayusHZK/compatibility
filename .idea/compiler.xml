@@ -7,13 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="compatibility" />
+        <module name="method-monitor" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jvmLoad" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="compatibility" options="-parameters" />
+      <module name="jvmLoad" options="-parameters" />
+      <module name="method-monitor" options="-parameters" />
     </option>
   </component>
 </project>

@@ -10,6 +10,8 @@ import java.util.function.Function;
  * @description :
  **/
 public class TransformFunction {
+
+    // 传入一个function 并新建一个function
     static Function<I,O> transform(Function<I,O> in){
         return in.andThen(o -> {
             System.out.println(o);

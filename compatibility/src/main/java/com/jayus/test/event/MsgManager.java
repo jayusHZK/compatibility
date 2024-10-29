@@ -9,7 +9,6 @@ import java.util.List;
  * @description :
  **/
 public class MsgManager {
-
     static List<MsgListener> msgListenerList = new ArrayList<>();
 
     public static void addListener(MsgListener msgListener) {

@@ -25,6 +25,7 @@ public class Test {
             //int a = 1 / 0;
             System.out.println("sleep stop");
         });
+        //threadPoolExecutor.setCorePoolSize(1);
         //thread.setUncaughtExceptionHandler(new ThreadErrorHandler());
         threadPoolExecutor.execute(thread);
         threadPoolExecutor.shutdownNow();

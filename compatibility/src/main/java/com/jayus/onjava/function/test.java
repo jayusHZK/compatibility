@@ -18,6 +18,8 @@ public class test {
     };
 
     public static void main(String[] args) {
-        f1.compose(f2).apply("a");
+        System.out.println(f1.compose(f2).apply("a"));
+        System.out.println("----------");
+        System.out.println(f1.andThen(f2).apply("a"));
     }
 }

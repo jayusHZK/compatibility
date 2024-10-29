@@ -4,6 +4,9 @@ package com.jayus.onjava.function;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+/*
+函数式编程链
+ */
 public class Consumers {
 
     static public <T> void with(Boolean expresion, Consumer<T> consumer, T t) {

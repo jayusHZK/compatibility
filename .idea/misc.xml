@@ -5,10 +5,14 @@
     <groovy codeStyle="LEGACY" />
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../jvmLoad" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/compatibility/pom.xml" />
+        <option value="$PROJECT_DIR$/compatibility/method-monitor/pom.xml" />
       </list>
     </option>
   </component>
